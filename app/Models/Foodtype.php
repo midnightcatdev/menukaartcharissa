@@ -14,6 +14,7 @@ class Foodtype extends Model
 
     protected $fillable = [
         'name',
+        
     ];
 
     /**
