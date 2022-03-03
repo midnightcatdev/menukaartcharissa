@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create new daypart</h1>
+    <h1>Voeg nieuw dagdeel toe</h1>
     <div class="create-form form-control">
         {{ Form::open(['route' => ['daypart.store']]) }}
+        {{ Form::label('name', 'Voer dagdeel in') }}
         {{ Form::text('name') }}
-        {{ Form::submit('Create new day part!',['class' => 'btn btn-success']) }}
+        {{ Form::submit('Indienen!',['class' => 'btn btn-success']) }}
         {{ Form::close() }}
     </div>
 @endsection

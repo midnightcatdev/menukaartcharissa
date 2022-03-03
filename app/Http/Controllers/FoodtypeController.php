@@ -37,23 +37,21 @@ class FoodtypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        Daypart::findOrFail($request->get('daypart_id'));
-
         $foodtype = Foodtype::create($request->all());
         $foodtype->daypart()->associate(Daypart::find($request->get('daypart_id')))->save();
 
-        return redirect()->route('foodtype.index');
+        return redirect()->route('foodtype.index')->with('success', 'Gerecht type toegevoegd');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,10 +62,10 @@ class FoodtypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Foodtype $foodtype)
+    public function edit(Foodtype $foodtype)
     {
         $view = view('foodtype.edit');
 
@@ -79,27 +77,26 @@ class FoodtypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Foodtype $foodtype)
     {
         $foodtype->update($request->all());
 
-        return redirect()->route('foodtype.index');
+        return redirect()->route('foodtype.index')->with('success', 'Aanpassing verwerkt');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Foodtype $foodtype)
     {
         $foodtype->delete();
-        return redirect()->route('foodtype.index')
-            ->with('success', 'Daypart updated successfully');
+        return redirect()->route('foodtype.index')->with('success', 'Gerecht type verwijdert');
     }
 }

@@ -10,11 +10,10 @@ class Foodtype extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'name',
-        
     ];
 
     /**
@@ -26,7 +25,7 @@ class Foodtype extends Model
     }
 
     /**
-     * Get the foodtype that owns the dish.
+     * The dishes that belong to the foodtypes
      */
     public function dishes()
     {

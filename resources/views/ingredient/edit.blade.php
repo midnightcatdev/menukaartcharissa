@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="edit-form control-form">
+    <div class="edit-form form-control">
         {{ Form::model($ingredient,['route' => ['ingredient.update', $ingredient], 'method' => 'put']) }}
-        {{ Form::label('name', 'Current name') }}
-        {{ Form::text('name') }}
-        {{ Form::label('name', 'Current') }}
-        {{ Form::text('measureunit') }}
-        {{ Form::label('name', 'Current') }}
-        {{ Form::text('measurement') }}
-        {{ Form::submit('Submit changes!',['class' => 'btn btn-success']) }}
+        {{ Form::label('name', 'Ingredient') }}
+        {{ Form::text('name',  null, ['class' => 'form-control']) }}
+        {{ Form::label('unit', 'Meeteenheid') }}
+        {{ Form::text('unit',  null, ['class' => 'form-control']) }}
+        {{ Form::label('measurement', 'Waarde') }}
+        {{ Form::text('measurement',  null, ['class' => 'form-control']) }}
+        {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>
 @endsection

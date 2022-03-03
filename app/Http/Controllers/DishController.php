@@ -38,38 +38,40 @@ class DishController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $foodtype = Foodtype::findOrFail($request->get('foodtype_id'));
+        $foodtype = Foodtype::find($request->get('foodtype_id'));
 
         $dish = Dish::create($request->all());
 
         $dish->foodtype()->associate($foodtype)->save();
 
-        return redirect()->route('dish.index');
+        return redirect()->route('dish.index')->with('success', 'Gerecht is toegevoegd');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Dish $dish)
     {
-        //
+//        return view('dish.show', [
+//            'dish' => Dish::find($dish)
+//        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Dish $dish)
+    public function edit(Dish $dish)
     {
         $view = view('dish.edit');
 
@@ -81,27 +83,26 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Dish $dish)
     {
         $dish->update($request->all());
 
-        return redirect()->route('dish.index');
+        return redirect()->route('dish.index')->with('success', 'Gerecht is aangepast');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('dish.index')
-            ->with('success', 'Daypart updated successfully');
+        return redirect()->route('dish.index')->with('success', 'Gerecht is verwijdert');
     }
 }

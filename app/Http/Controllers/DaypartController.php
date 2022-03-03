@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Daypart;
 use Illuminate\Http\Request;
-use URL;
 
 class DaypartController extends Controller
 {
@@ -46,7 +45,7 @@ class DaypartController extends Controller
             'name' => $request->get('name'),
         ]);
 
-        return redirect()->route('daypart.index');
+        return redirect()->route('daypart.index')->with('success', 'Dagdeel is aangemaakt');
     }
 
     /**
@@ -66,7 +65,7 @@ class DaypartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Daypart $daypart)
+    public function edit(Daypart $daypart)
     {
         $view = view('daypart.edit');
 
@@ -86,7 +85,7 @@ class DaypartController extends Controller
     {
         $daypart->update($request->all());
 
-        return redirect()->route('daypart.index');
+        return redirect()->route('daypart.index')->with('success', 'Dagdeel is aangepast');
     }
 
     /**
@@ -96,7 +95,6 @@ class DaypartController extends Controller
     public function destroy(Daypart $daypart)
     {
         $daypart->delete();
-        return redirect()->route('daypart.index')
-            ->with('success', 'Daypart updated successfully');
+        return redirect()->route('daypart.index')->with('success', 'Dagdeel is verwijdert');
     }
 }

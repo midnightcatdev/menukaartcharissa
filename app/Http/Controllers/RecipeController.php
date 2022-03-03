@@ -37,7 +37,7 @@ class RecipeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,13 +45,13 @@ class RecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
 
-        return redirect()->route('recipe.index');
+        return redirect()->route('recipe.index')->with('success', 'Recept toegevoegd');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,7 +62,7 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, Recipe $recipe)
@@ -77,27 +77,26 @@ class RecipeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe)
     {
         $recipe->update($request->all());
 
-        return redirect()->route('recipe.index');
+        return redirect()->route('recipe.index')->with('success', 'Recept gewijzigd');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return redirect()->route('recipe.index')
-            ->with('success', 'Recipe updated successfully');
+        return redirect()->route('recipe.index')->with('success', 'Recept verwijdert');
     }
 }

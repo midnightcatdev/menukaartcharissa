@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="edit-form control-form">
+    <div class="edit-form form-control">
         {{ Form::model($foodtype,['route' => ['foodtype.update', $foodtype], 'method' => 'put']) }}
-        {{ Form::label('Current value') }}
-        {{ Form::text('name') }}
-        {{ Form::submit('Edit!',['class' => 'btn btn-success']) }}
+        {{ Form::label('name','Type gerecht') }}
+        {{ Form::text('name',  null, ['class' => 'form-control']) }}
+        {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>
 @endsection
