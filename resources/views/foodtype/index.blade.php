@@ -11,6 +11,8 @@
                 <td>{{ $foodtype->name }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
+                        <a href="{{ route('foodtype.show', $foodtype) }}" class="btn btn-secondary" type="edit">Meer
+                            info</a>
                         <a href="{{ route('foodtype.edit', $foodtype) }}" class="btn btn-success"
                            type="edit">Bewerken</a>
                     </div>

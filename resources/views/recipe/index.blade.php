@@ -13,6 +13,8 @@
                 <td>{{ $recipe->steps }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
+                        <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary" type="edit">Meer
+                            info</a>
                         <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success" type="edit">Bewerken</a>
                     </div>
                     <div class="delete-button">

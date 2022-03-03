@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use Illuminate\Http\Request;
+use DB;
 
 class DishController extends Controller
 {
@@ -19,7 +20,9 @@ class DishController extends Controller
 
         $view->dishes = Dish::get();
 
-        return $view;
+        $dishes = DB::table('dishes')->paginate(10);
+
+        return $view->with('dishes', $dishes);
     }
 
     /**
@@ -60,9 +63,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-//        return view('dish.show', [
-//            'dish' => Dish::find($dish)
-//        ]);
+        $view = view('dish.show');
+
+        $view->dish = $dish;
+
+        return $view;
     }
 
     /**
@@ -71,8 +76,14 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit(Request $request, Dish $dish)
     {
+//        $foodtype = Foodtype::find($request->get('foodtype_id'));
+//
+//        $dish = Dish::create($request->all());
+//
+//        $dish->foodtype()->associate($foodtype)->save();
+
         $view = view('dish.edit');
 
         $view->dish = $dish;

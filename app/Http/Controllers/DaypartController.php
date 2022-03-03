@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daypart;
 use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 class DaypartController extends Controller
 {
@@ -56,7 +57,11 @@ class DaypartController extends Controller
      */
     public function show(Daypart $daypart)
     {
-        return view('daypart.show', compact('daypart'));
+        $view = view('daypart.show');
+
+        $view->daypart = $daypart;
+
+        return $view;
     }
 
     /**

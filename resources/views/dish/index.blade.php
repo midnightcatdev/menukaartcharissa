@@ -9,7 +9,6 @@
             <th>Prijs</th>
             <th>Beheer functies</th>
         </tr>
-
         @foreach($dishes as $dish)
             <tr>
                 <td>{{ $dish->name }}</td>
@@ -18,6 +17,8 @@
                 <td>{{ $dish->price }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
+                        <a href="{{ route('dish.show', $dish) }}" class="btn btn-secondary" type="edit">Meer
+                            info</a>
                         <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success" type="edit">Bewerken</a>
                     </div>
                     <div class="delete-button">

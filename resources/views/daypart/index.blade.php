@@ -13,6 +13,8 @@
                 <td>{{ $daypart->foodtypes }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
+                        <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary" type="edit">Meer
+                            info</a>
                         <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success" type="edit">Bewerken</a>
                     </div>
                     <div class="delete-button">

@@ -11,7 +11,8 @@
         {{ Form::text('allergies',  null, ['class' => 'form-control'] ) }}
         {{ Form::label('price', 'Prijs') }}
         {{ Form::number('price',  null, ['class' => 'form-control'] ) }}
-        {{--        {{ Form::label('foodtype_id', 'Type gerecht') }}--}}
+        {{--        hulp graag hiermee--}}
+        {{--        {{ Form::label('foodtype_id', 'Select foodtype') }}--}}
         {{--        {{ Form::select('foodtype_id', $dish, null, ['class' => 'form-control']) }}--}}
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
