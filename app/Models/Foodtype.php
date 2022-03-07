@@ -13,7 +13,7 @@ class Foodtype extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     /**

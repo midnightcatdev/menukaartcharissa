@@ -3,14 +3,22 @@
     <h1>Recepten lijst</h1>
     <table class="table table-bordered table-responsive-lg">
         <tr>
-            <th>Name</th>
-            <th>Bereidingswijze</th>
-            <th>Beheer functies</th>
+            <th class="col-lg-2">Name</th>
+            <th class="col-lg-4">Bereidingswijze</th>
+            <th class="col-lg-3">Ingredienten</th>
+            <th class="col-lg-3">Beheer functies</th>
         </tr>
         @foreach($recipes as $recipe)
             <tr>
                 <td>{{ $recipe->name }}</td>
                 <td>{{ $recipe->steps }}</td>
+                <td>
+                    @foreach($recipe->ingredients as $ingredient)
+                        <ul class="list-group">
+                            <li class="list-group-item mb-1">{{$ingredient->name}}</li>
+                        </ul>
+                    @endforeach
+                </td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
                         <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary" type="edit">Meer
@@ -27,4 +35,5 @@
         @endforeach
     </table>
     <a href="{{ route('recipe.create') }}" class="btn btn-success m-2" type="edit">Voeg recept toe</a>
+    <div> {{ $recipes->links() }} </div>
 @endsection

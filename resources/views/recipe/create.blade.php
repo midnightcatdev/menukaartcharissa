@@ -8,12 +8,12 @@
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('steps', 'Bereidingswijze') }}
         {{ Form::text('steps', null, ['class' => 'form-control'] ) }}
-
-        {{--        {{ Form::label('name', 'ingredienten') }}--}}
-        {{--        {{ Form::checkbox('name') }}--}}
-        {{--        {{ Form::label('name', 'ingredienten') }}--}}
-        {{--        {{ Form::checkbox('name') }}--}}
-
+        @foreach($ingredients as $id => $ingredient_name)
+            <div class="form-check mt-0 pt-0">
+                {{ Form::label('ingredients', $ingredient_name, null, ['class' => 'form-check-label'] ) }}
+                {{ Form::checkbox('ingredients[]', $id, null, ['class' => 'form-check-input'] ) }}
+            </div>
+        @endforeach
         {{ Form::submit('Indienen!',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>

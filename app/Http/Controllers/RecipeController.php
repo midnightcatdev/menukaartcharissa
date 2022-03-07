@@ -16,7 +16,8 @@ class RecipeController extends Controller
     public function index()
     {
         $view = view('recipe.index');
-        $view->recipes = Recipe::get();
+        $view->ingredients = Ingredient::pluck('name', 'id');
+        $view->recipes = Recipe::paginate(8);
 
         return $view;
     }
@@ -43,7 +44,7 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         $recipe = Recipe::create($request->all());
-
+        $recipe->ingredients()->sync($request->get('ingredients'));
 
         return redirect()->route('recipe.index')->with('success', 'Recept toegevoegd');
     }
@@ -69,10 +70,10 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Recipe $recipe)
+    public function edit(Recipe $recipe)
     {
         $view = view('recipe.edit');
-
+        $view->ingredients = Ingredient::pluck('name', 'id');
         $view->recipe = $recipe;
 
         return $view;
@@ -88,6 +89,7 @@ class RecipeController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $recipe->update($request->all());
+        $recipe->ingredients()->sync($request->get('ingredients'));
 
         return redirect()->route('recipe.index')->with('success', 'Recept gewijzigd');
     }

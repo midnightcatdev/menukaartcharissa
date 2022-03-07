@@ -18,7 +18,6 @@ class DaypartController extends Controller
     public function index()
     {
         $view = view('daypart.index');
-
         $view->dayparts = Daypart::get();
 
         return $view;

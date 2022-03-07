@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('unit');
-            $table->string('measurement');
+            $table->string('value');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Voeg nieuw recept toe</h1>
+    <h1>Voeg nieuw type gerecht toe</h1>
     <div class="create-form form-control">
         {{ Form::open(['route' => ['foodtype.store']]) }}
         {{ Form::label('name', 'Voer type gerecht in') }}

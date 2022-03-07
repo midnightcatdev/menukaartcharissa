@@ -16,7 +16,7 @@ class FoodtypeController extends Controller
     public function index()
     {
         $view = view('foodtype.index');
-        $view->foodtypes = Foodtype::get();
+        $view->foodtypes = Foodtype::paginate(8);
 
         return $view;
     }
@@ -73,6 +73,8 @@ class FoodtypeController extends Controller
     {
         $view = view('foodtype.edit');
 
+        $view->dayparts = Daypart::pluck('name', 'id');
+
         $view->foodtype = $foodtype;
 
         return $view;
@@ -88,6 +90,10 @@ class FoodtypeController extends Controller
     public function update(Request $request, Foodtype $foodtype)
     {
         $foodtype->update($request->all());
+
+        $daypart = Daypart::find($request->get('id'));
+
+        $foodtype->daypart()->associate($daypart);
 
         return redirect()->route('foodtype.index')->with('success', 'Aanpassing verwerkt');
     }

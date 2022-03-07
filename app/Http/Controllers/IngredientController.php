@@ -16,7 +16,7 @@ class IngredientController extends Controller
     {
         $view = view('ingredient.index');
 
-        $view->ingredients = Ingredient::get();
+        $view->ingredients = Ingredient::paginate(8);
 
         return $view;
     }
@@ -43,7 +43,6 @@ class IngredientController extends Controller
     {
         $ingredient = Ingredient::create($request->all());
 
-
         return redirect()->route('ingredient.index')->with('success', 'Ingredient toegevoegd');
     }
 
@@ -56,7 +55,6 @@ class IngredientController extends Controller
     public function show(Ingredient $ingredient)
     {
         $view = view('ingredient.show');
-
         $view->ingredient = $ingredient;
 
         return $view;
@@ -71,7 +69,6 @@ class IngredientController extends Controller
     public function edit(Ingredient $ingredient)
     {
         $view = view('ingredient.edit');
-
         $view->ingredient = $ingredient;
 
         return $view;

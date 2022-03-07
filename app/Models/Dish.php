@@ -19,15 +19,23 @@ class Dish extends Model
     ];
 
     /**
-     * The roles that belong to the Dish.
+     * The foodtype that belong to the Dish.
      */
     public function foodtype()
     {
         return $this->belongsTo(Foodtype::class);
     }
 
-    public function recipe()
+//    /**
+//     * The recipe that belongs to the dish.
+//     */
+//    public function recipe()
+//    {
+//        return $this->hasOne(Recipe::class);
+//    }
+
+    public function recipes()
     {
-        return $this->hasOne(Recipe::class);
+        return $this->hasMany(Recipe::class);
     }
 }

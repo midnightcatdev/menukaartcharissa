@@ -4,6 +4,15 @@
         <div class="card-body">
             <div class="row">
                 <h1 class="card-title">{{ $dish->name }}</h1>
+
+                @foreach($dish->recipes as $recipe)
+                    Recept:{{ $recipe->name}}<br/>
+                    Ingredienten:
+                    @foreach($recipe->ingredients as $ingredient)
+                        {{$ingredient->name}},
+                    @endforeach
+                @endforeach
+
                 <div class="col-6">
                     <h5>€ {{ $dish->price }}</h5>
                     <h3 class="card-subtitle mt-2">Omschrijving</h3>

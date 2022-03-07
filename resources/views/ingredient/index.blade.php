@@ -12,7 +12,7 @@
             <tr>
                 <td>{{ $ingredient->name }}</td>
                 <td>{{ $ingredient->unit }}</td>
-                <td>{{ $ingredient->measurement }}</td>
+                <td>{{ $ingredient->value }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
                         <a href="{{ route('ingredient.show', $ingredient) }}" class="btn btn-secondary" type="edit">Meer
@@ -29,4 +29,5 @@
         @endforeach
     </table>
     <a href="{{ route('ingredient.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg ingredient toe</a>
+    <div> {{ $ingredients->links() }} </div>
 @endsection

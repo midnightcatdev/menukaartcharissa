@@ -12,7 +12,7 @@ class Ingredient extends Model
     protected $fillable = [
         'name',
         'unit',
-        'measurement',
+        'value',
     ];
 
     /**

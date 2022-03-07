@@ -7,8 +7,8 @@
         {{ Form::text('name',  null, ['class' => 'form-control']) }}
         {{ Form::label('unit', 'Meeteenheid') }}
         {{ Form::text('unit',  null, ['class' => 'form-control']) }}
-        {{ Form::label('measurement', 'Waarde') }}
-        {{ Form::text('measurement',  null, ['class' => 'form-control']) }}
+        {{ Form::label('value', 'Waarde') }}
+        {{ Form::text('value',  null, ['class' => 'form-control']) }}
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>

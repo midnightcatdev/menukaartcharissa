@@ -26,4 +26,5 @@
         @endforeach
     </table>
     <a href="{{ route('foodtype.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg type gerecht toe</a>
+    <div> {{ $foodtypes->links() }} </div>
 @endsection

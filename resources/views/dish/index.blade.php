@@ -31,4 +31,5 @@
         @endforeach
     </table>
     <a href="{{ route('dish.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg toe</a>
+    <div> {{ $dishes->links() }} </div>
 @endsection

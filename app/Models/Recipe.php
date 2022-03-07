@@ -11,11 +11,20 @@ class Recipe extends Model
 
     protected $fillable = [
         'name',
-        'steps'
+        'steps',
+        'ingredient'
     ];
 
+//    /**
+//     * Get the dish that uses the recipe.
+//     */
+//    public function dish()
+//    {
+//        return $this->belongsTo(Dish::class);
+//    }
+
     /**
-     * Get the dish that uses the recipe.
+     * Get the dish that uses the recipes.
      */
     public function dish()
     {
@@ -25,7 +34,7 @@ class Recipe extends Model
     /**
      * The ingredients that belong to the recipe.
      */
-        public function ingredients()
+    public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class);
     }
