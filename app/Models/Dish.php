@@ -16,6 +16,7 @@ class Dish extends Model
         'description',
         'allergies',
         'price',
+        'recipe_id'
     ];
 
     /**

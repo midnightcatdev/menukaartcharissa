@@ -17,7 +17,7 @@ class DishController extends Controller
     public function index()
     {
         $view = view('dish.index');
-        $view->dishes = Dish::paginate(10);
+        $view->dishes = Dish::paginate(5);
 
         return $view;
     }
@@ -45,11 +45,9 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $dish = Dish::create($request->all());
-        $recipe = Recipe::find($request->get('recipe_id'));
-        $foodtype = Foodtype::find($request->get('foodtype_id'));
 
+        $foodtype = Foodtype::find($request->get('foodtype_id'));
         $dish->foodtype()->associate($foodtype)->save();
-        $dish->recipes()->save($recipe);
 
         return redirect()->route('dish.index')->with('success', 'Gerecht is toegevoegd');
     }
@@ -96,10 +94,10 @@ class DishController extends Controller
     {
         $dish->update($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
-        $recipe = Recipe::find($request->get('recipe_id'));
+//        $recipe = Recipe::find($request->get('recipe_id'));
 
         $dish->foodtype()->associate($foodtype)->save();
-        $dish->recipes()->save($recipe);
+//        $dish->recipes()->save($recipe);
 
         return redirect()->route('dish.index')->with('success', 'Gerecht is aangepast');
     }

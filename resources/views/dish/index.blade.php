@@ -7,6 +7,8 @@
             <th>Omschrijving</th>
             <th>Allergenen</th>
             <th>Prijs</th>
+            <th>Gerecht type</th>
+            <th>Recepten</th>
             <th>Beheer functies</th>
         </tr>
         @foreach($dishes as $dish)
@@ -15,6 +17,14 @@
                 <td>{{ $dish->description}}</td>
                 <td>{{ $dish->allergies }}</td>
                 <td>{{ $dish->price }}</td>
+                <td> {{ $dish->foodtypes->name}}</td>
+                {{--                <td> {{ $dish->foodtypes->name }}</td>--}}
+                {{--                {{ dd($dish->foodtype->name) }}--}}
+                {{--                <td> {{ $dish->foodtype_id }}</td>--}}
+
+                @foreach($dish->recipes as $recipe)
+                    <td> {{ $recipe->name }} </td>
+                @endforeach
                 <td class="d-flex">
                     <div class="edit-button me-1">
                         <a href="{{ route('dish.show', $dish) }}" class="btn btn-secondary" type="edit">Meer
