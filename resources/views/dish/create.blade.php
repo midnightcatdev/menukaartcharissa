@@ -14,7 +14,7 @@
         {{ Form::number('price', 'prijs', ['class' => 'form-control'] ) }}
         {{ Form::label('foodtype_id', 'Selecteer type gerecht') }}
         {{ Form::select('foodtype_id', $foodtypes, null, ['class' => 'form-control']) }}
-        {{ Form::label('recipe_id', 'Selecteer recept') }}
+        {{ Form::label('recipes', 'Selecteer recept') }}
         @foreach($recipes as $id => $recipe_name)
             <div class="form-check mt-0 pt-0">
                 {{ Form::label('recipes', $recipe_name, null, ['class' => 'form-check-label'] ) }}

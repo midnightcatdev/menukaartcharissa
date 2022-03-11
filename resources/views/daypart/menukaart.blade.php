@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    {{ $daypart }}
+    {{ $dayparts }}
 
 @endsection

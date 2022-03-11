@@ -63,6 +63,14 @@ class DaypartController extends Controller
         return $view;
     }
 
+    public function menu()
+    {
+        $view = view('daypart.menukaart');
+        $view->dayparts = Daypart::get();
+
+        return $view;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

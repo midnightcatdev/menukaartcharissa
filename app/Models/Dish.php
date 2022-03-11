@@ -15,8 +15,7 @@ class Dish extends Model
         'name',
         'description',
         'allergies',
-        'price',
-        'recipe_id'
+        'price'
     ];
 
     /**
@@ -34,7 +33,9 @@ class Dish extends Model
 //    {
 //        return $this->hasOne(Recipe::class);
 //    }
-
+    /**
+     * The recipes that belong to the Dish.
+     */
     public function recipes()
     {
         return $this->hasMany(Recipe::class);

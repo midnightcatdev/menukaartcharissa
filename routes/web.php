@@ -13,10 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-
-Route::get('/', function () {
-    return view('menukaart');
-});
-
-
-// deze route verwijst door naar controller vangt de url af
+Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('menukaart');

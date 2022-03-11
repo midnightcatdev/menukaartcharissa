@@ -45,8 +45,10 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $dish = Dish::create($request->all());
-
         $foodtype = Foodtype::find($request->get('foodtype_id'));
+        $recipes = Recipe::find($request->get('recipes'));
+
+        $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht is toegevoegd');
@@ -94,11 +96,11 @@ class DishController extends Controller
     {
         $dish->update($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
-//        $recipe = Recipe::find($request->get('recipe_id'));
+        $recipes = Recipe::find($request->get('recipes'));
 
         $dish->foodtype()->associate($foodtype)->save();
-//        $dish->recipes()->save($recipe);
-
+        $dish->recipes()->saveMany($recipes);
+        
         return redirect()->route('dish.index')->with('success', 'Gerecht is aangepast');
     }
 

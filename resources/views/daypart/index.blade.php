@@ -10,7 +10,13 @@
         @foreach ($dayparts as $daypart)
             <tr>
                 <td>{{ $daypart->name }}</td>
-                <td>{{ $daypart->foodtypes }}</td>
+                <td>
+                    <ul class="list-unstyled list-inline">
+                        @foreach($daypart->foodtypes as $foodtype)
+                            <li>  {{$foodtype->name}} </li>
+                        @endforeach
+                    </ul>
+                </td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
                         <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary" type="edit">Meer
