@@ -3,8 +3,8 @@
     <h1>Type gerechten lijst</h1>
     <table class="table table-bordered table-responsive-lg">
         <tr class="bg-light">
-            <th>Naam</th>
-            <th>Beheer functies</th>
+            <th class="col-7">Naam</th>
+            <th class="col-3">Beheer functies</th>
         </tr>
         @foreach($foodtypes as $foodtype)
             <tr>

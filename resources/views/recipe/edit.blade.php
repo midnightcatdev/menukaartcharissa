@@ -17,5 +17,15 @@
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger mt-1">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
 

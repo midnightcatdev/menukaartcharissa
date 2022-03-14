@@ -26,13 +26,6 @@ class Dish extends Model
         return $this->belongsTo(Foodtype::class);
     }
 
-//    /**
-//     * The recipe that belongs to the dish.
-//     */
-//    public function recipe()
-//    {
-//        return $this->hasOne(Recipe::class);
-//    }
     /**
      * The recipes that belong to the Dish.
      */

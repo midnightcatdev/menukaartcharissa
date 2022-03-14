@@ -21,6 +21,3 @@ class Daypart extends Model
         return $this->hasMany(Foodtype::class);
     }
 }
-
-
-

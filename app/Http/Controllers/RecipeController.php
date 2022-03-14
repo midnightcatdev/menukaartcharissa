@@ -43,10 +43,16 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'steps' => 'required',
+            'ingredients' => 'required',
+        ]);
+
         $recipe = Recipe::create($request->all());
         $recipe->ingredients()->sync($request->get('ingredients'));
 
-        return redirect()->route('recipe.index')->with('success', 'Recept toegevoegd');
+        return redirect()->route('recipe.index')->with('success', 'Recept is aangemaakt');
     }
 
     /**
@@ -88,8 +94,14 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        $recipe->update($request->all());
+        $this->validate($request, [
+            'name' => 'required',
+            'steps' => 'required',
+            'ingredients' => 'required',
+        ]);
+
         $recipe->ingredients()->sync($request->get('ingredients'));
+        $recipe->update($request->all());
 
         return redirect()->route('recipe.index')->with('success', 'Recept gewijzigd');
     }

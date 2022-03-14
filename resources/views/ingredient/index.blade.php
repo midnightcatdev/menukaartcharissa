@@ -3,10 +3,10 @@
     <h1>Ingredienten lijst</h1>
     <table class="table table-bordered table-responsive-lg">
         <tr>
-            <th>Naam</th>
-            <th>Meet eenheid</th>
-            <th>Waarde</th>
-            <th>Beheer functies</th>
+            <th class="col-2">Naam</th>
+            <th class="col-2">Meet eenheid</th>
+            <th class="col-4">Waarde</th>
+            <th class="col-4">Beheer functies</th>
         </tr>
         @foreach($ingredients as $ingredient)
             <tr>

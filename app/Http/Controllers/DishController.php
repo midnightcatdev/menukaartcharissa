@@ -44,6 +44,15 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'allergies' => 'required',
+            'price' => 'required',
+//            'foodtype' => 'required',
+            'recipes' => 'required',
+        ]);
+
         $dish = Dish::create($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
@@ -51,7 +60,7 @@ class DishController extends Controller
         $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
 
-        return redirect()->route('dish.index')->with('success', 'Gerecht is toegevoegd');
+        return redirect()->route('dish.index')->with('success', 'Gerecht is aangemaakt');
     }
 
     /**
@@ -94,14 +103,23 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'allergies' => 'required',
+            'price' => 'required',
+            'foodtype_id' => 'required',
+            'recipes' => 'required',
+        ]);
+
         $dish->update($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
 
-        $dish->foodtype()->associate($foodtype)->save();
         $dish->recipes()->saveMany($recipes);
-        
-        return redirect()->route('dish.index')->with('success', 'Gerecht is aangepast');
+        $dish->foodtype()->associate($foodtype)->save();
+
+        return redirect()->route('dish.index')->with('success', 'Gerecht gewijzigd');
     }
 
     /**
@@ -113,6 +131,6 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('dish.index')->with('success', 'Gerecht is verwijdert');
+        return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
     }
 }

@@ -41,10 +41,41 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'unit' => 'required',
+            'value' => 'required',
+        ]);
+
         $ingredient = Ingredient::create($request->all());
 
-        return redirect()->route('ingredient.index')->with('success', 'Ingredient toegevoegd');
+        return redirect()->route('ingredient.index')->with('success', 'Ingredient is aangemaakt');
     }
+
+    //Zou dit ook moeten kunnen?
+//    public function validateWith($validator, Request $request = null)
+//    {
+////        $this->validate($request, [
+////            'name' => 'required',
+////            'unit' => 'required',
+////            'value' => 'required',
+////        ]);
+//    }
+//
+//    /**
+//     * Store a newly created resource in storage.
+//     *
+//     * @param \Illuminate\Http\Request $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function store(Request $request)
+//    {
+//        $this->validateWith();
+//
+//        $ingredient = Ingredient::create($request->all());
+//
+//        return redirect()->route('ingredient.index')->with('success', 'Ingredient is aangemaakt');
+//    }
 
     /**
      * Display the specified resource.
@@ -83,6 +114,12 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'unit' => 'required',
+            'value' => 'required',
+        ]);
+
         $ingredient->update($request->all());
 
         return redirect()->route('ingredient.index')->with('success', 'Ingredient gewijzigd');

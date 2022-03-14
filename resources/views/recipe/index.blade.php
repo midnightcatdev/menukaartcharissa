@@ -2,7 +2,7 @@
 @section('content')
     <h1>Recepten lijst</h1>
     <table class="table table-bordered table-responsive-lg">
-        <tr>
+        <tr class="table-light">
             <th class="col-lg-2">Name</th>
             <th class="col-lg-4">Bereidingswijze</th>
             <th class="col-lg-3">Ingredienten</th>

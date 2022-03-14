@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Daypart;
+use App\Models\Dish;
+use App\Models\Foodtype;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
-use function GuzzleHttp\Promise\all;
 
 class DaypartController extends Controller
 {
@@ -14,7 +16,6 @@ class DaypartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-// controller communiceert met de view en geeft data mee
     public function index()
     {
         $view = view('daypart.index');
@@ -41,6 +42,10 @@ class DaypartController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
         Daypart::create([
             'name' => $request->get('name'),
         ]);
@@ -67,6 +72,9 @@ class DaypartController extends Controller
     {
         $view = view('daypart.menukaart');
         $view->dayparts = Daypart::get();
+        $view->recipes = Recipe::get();
+        $view->dishes = Dish::get();
+        $view->foodtypes = Foodtype::get();
 
         return $view;
     }
@@ -95,9 +103,13 @@ class DaypartController extends Controller
      */
     public function update(Request $request, Daypart $daypart)
     {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
         $daypart->update($request->all());
 
-        return redirect()->route('daypart.index')->with('success', 'Dagdeel is aangepast');
+        return redirect()->route('daypart.index')->with('success', 'Dagdeel gewijzigd');
     }
 
     /**
@@ -107,6 +119,6 @@ class DaypartController extends Controller
     public function destroy(Daypart $daypart)
     {
         $daypart->delete();
-        return redirect()->route('daypart.index')->with('success', 'Dagdeel is verwijdert');
+        return redirect()->route('daypart.index')->with('success', 'Dagdeel verwijdert');
     }
 }

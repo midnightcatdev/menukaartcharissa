@@ -42,10 +42,15 @@ class FoodtypeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'daypart_id' => 'required',
+        ]);
+
         $foodtype = Foodtype::create($request->all());
         $foodtype->daypart()->associate(Daypart::find($request->get('daypart_id')))->save();
 
-        return redirect()->route('foodtype.index')->with('success', 'Gerecht type toegevoegd');
+        return redirect()->route('foodtype.index')->with('success', 'Gerecht type aangemaakt');
     }
 
     /**
@@ -89,13 +94,16 @@ class FoodtypeController extends Controller
      */
     public function update(Request $request, Foodtype $foodtype)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'daypart_id' => 'required',
+        ]);
+
         $foodtype->update($request->all());
-
         $daypart = Daypart::find($request->get('id'));
-
         $foodtype->daypart()->associate($daypart);
 
-        return redirect()->route('foodtype.index')->with('success', 'Aanpassing verwerkt');
+        return redirect()->route('foodtype.index')->with('success', 'Gerecht type gewijzigd');
     }
 
     /**
