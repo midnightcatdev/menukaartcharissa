@@ -8,6 +8,9 @@
             @foreach($dishes as $dish)
                 <ul> {{ $dish->name }} </ul>
                 <ul> {{ $dish->description }} </ul>
+
+
+ 
             @endforeach
         @endforeach
     </ul>
