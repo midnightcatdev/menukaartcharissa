@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeStoreRequest;
+use App\Models\Daypart;
+use App\Models\Dish;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
@@ -32,6 +34,7 @@ class RecipeController extends Controller
     {
         $view = view('recipe.create');
         $view->ingredients = Ingredient::pluck('name', 'id');
+        $view->dishes = Dish::pluck('name', 'id');
 
         return $view;
     }
@@ -45,6 +48,7 @@ class RecipeController extends Controller
     public function store(RecipeStoreRequest $request)
     {
         $recipe = Recipe::create($request->all());
+        $recipe->dish()->associate(Dish::find($request->get('dish_id')))->save();
         $recipe->ingredients()->sync($request->get('ingredients'));
 
         return redirect()->route('recipe.index')->with('success', 'Recept is aangemaakt');
@@ -75,6 +79,7 @@ class RecipeController extends Controller
     {
         $view = view('recipe.edit');
         $view->ingredients = Ingredient::pluck('name', 'id');
+        $view->dishes = Dish::pluck('name', 'id');
         $view->recipe = $recipe;
 
         return $view;
@@ -90,6 +95,7 @@ class RecipeController extends Controller
     public function update(RecipeStoreRequest $request, Recipe $recipe)
     {
         $recipe->ingredients()->sync($request->get('ingredients'));
+        $recipe->dish()->associate(Dish::find($request->get('dish_id')))->save();
         $recipe->update($request->all());
 
         return redirect()->route('recipe.index')->with('success', 'Recept gewijzigd');

@@ -4,8 +4,9 @@
     <table class="table table-bordered table-responsive-lg">
         <tr class="table-light">
             <th class="col-lg-2">Name</th>
-            <th class="col-lg-4">Bereidingswijze</th>
+            <th class="col-lg-3">Bereidingswijze</th>
             <th class="col-lg-3">Ingredienten</th>
+            <th class="col-lg-2">Gerecht</th>
             <th class="col-lg-3">Beheer functies</th>
         </tr>
         @foreach($recipes as $recipe)
@@ -17,7 +18,8 @@
                         <ul class="list-group">
                             <li class="list-group-item mb-1">{{$ingredient->name}}</li>
                         </ul>
-                    @endforeach
+                @endforeach
+                <td> {{ $recipe->dish->name ?? 'none' }} </td>
                 </td>
                 <td class="d-flex">
                     <div class="edit-button me-1">

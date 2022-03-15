@@ -7,6 +7,8 @@
         {{ Form::text('name',  null, ['class' => 'form-control']) }}
         {{ Form::label('steps', 'Bereidingswijze') }}
         {{ Form::text('steps', null, ['class' => 'form-control'] ) }}
+        {{ Form::label('dish_id', 'Gerecht naam') }}
+        {{ Form::select('dish_id', $dishes, null, ['class' => 'form-control']) }}
         {{ Form::label('Selecteer ingredienten', null, ['class' => 'mt-3'] ) }}
         @foreach($ingredients as $id => $ingredient_name)
             <div class="form-check mt-0 pt-0">
