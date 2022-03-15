@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecipeStoreRequest;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
@@ -41,14 +42,8 @@ class RecipeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecipeStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'steps' => 'required',
-            'ingredients' => 'required',
-        ]);
-
         $recipe = Recipe::create($request->all());
         $recipe->ingredients()->sync($request->get('ingredients'));
 
@@ -92,14 +87,8 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(RecipeStoreRequest $request, Recipe $recipe)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'steps' => 'required',
-            'ingredients' => 'required',
-        ]);
-
         $recipe->ingredients()->sync($request->get('ingredients'));
         $recipe->update($request->all());
 

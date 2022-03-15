@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FoodtypeStoreRequest;
 use App\Models\Daypart;
 use App\Models\Foodtype;
 use Illuminate\Http\Request;
@@ -40,13 +41,8 @@ class FoodtypeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FoodtypeStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'daypart_id' => 'required',
-        ]);
-
         $foodtype = Foodtype::create($request->all());
         $foodtype->daypart()->associate(Daypart::find($request->get('daypart_id')))->save();
 
@@ -92,13 +88,8 @@ class FoodtypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Foodtype $foodtype)
+    public function update(FoodtypeStoreRequest $request, Foodtype $foodtype)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'daypart_id' => 'required',
-        ]);
-
         $foodtype->update($request->all());
         $daypart = Daypart::find($request->get('id'));
         $foodtype->daypart()->associate($daypart);

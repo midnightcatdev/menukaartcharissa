@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
@@ -42,17 +43,8 @@ class DishController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DishStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'allergies' => 'required',
-            'price' => 'required',
-//            'foodtype' => 'required',
-            'recipes' => 'required',
-        ]);
-
         $dish = Dish::create($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
@@ -101,17 +93,8 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(DishStoreRequest $request, Dish $dish)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'allergies' => 'required',
-            'price' => 'required',
-            'foodtype_id' => 'required',
-            'recipes' => 'required',
-        ]);
-
         $dish->update($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));

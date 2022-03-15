@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IngredientStoreRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
@@ -39,43 +40,12 @@ class IngredientController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(IngredientStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'unit' => 'required',
-            'value' => 'required',
-        ]);
-
         $ingredient = Ingredient::create($request->all());
 
         return redirect()->route('ingredient.index')->with('success', 'Ingredient is aangemaakt');
     }
-
-    //Zou dit ook moeten kunnen?
-//    public function validateWith($validator, Request $request = null)
-//    {
-////        $this->validate($request, [
-////            'name' => 'required',
-////            'unit' => 'required',
-////            'value' => 'required',
-////        ]);
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param \Illuminate\Http\Request $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        $this->validateWith();
-//
-//        $ingredient = Ingredient::create($request->all());
-//
-//        return redirect()->route('ingredient.index')->with('success', 'Ingredient is aangemaakt');
-//    }
 
     /**
      * Display the specified resource.
@@ -112,14 +82,8 @@ class IngredientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ingredient $ingredient)
+    public function update(IngredientStoreRequest $request, Ingredient $ingredient)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'unit' => 'required',
-            'value' => 'required',
-        ]);
-
         $ingredient->update($request->all());
 
         return redirect()->route('ingredient.index')->with('success', 'Ingredient gewijzigd');

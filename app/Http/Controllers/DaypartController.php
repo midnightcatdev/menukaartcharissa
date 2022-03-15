@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DaypartStoreRequest;
 use App\Models\Daypart;
 use App\Models\Dish;
 use App\Models\Foodtype;
@@ -40,12 +41,8 @@ class DaypartController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DaypartStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-        ]);
-
         Daypart::create([
             'name' => $request->get('name'),
         ]);
@@ -101,12 +98,8 @@ class DaypartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Daypart $daypart)
+    public function update(DaypartStoreRequest $request, Daypart $daypart)
     {
-        $this->validate($request, [
-            'name' => 'required',
-        ]);
-
         $daypart->update($request->all());
 
         return redirect()->route('daypart.index')->with('success', 'Dagdeel gewijzigd');
