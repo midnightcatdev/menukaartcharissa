@@ -1,43 +1,22 @@
 @extends('layouts.app')
 @section('content')
-
-    {{--    Under construction--}}
-    <ul class="list-unstyled list-inline">
-        @foreach($dayparts as $daypart)
-            {{ $daypart->name }}
-            @foreach($dishes as $dish)
-                <ul> {{ $dish->name }} </ul>
-                <ul> {{ $dish->description }} </ul>
-
-
- 
+    <div class="menukaart text-center">
+        <div class="col align-items-center">
+            @foreach($dayparts as $daypart)
+                <div class="daypart bg-light h2">
+                    {{ $daypart->name }}
+                </div>
+                @foreach($daypart->foodtypes as $foodtype)
+                    <div class="foodtype h4">
+                        {{ $foodtype->name }}
+                    </div>
+                    @foreach($foodtype->dishes as $dish)
+                        <div class="dish h6">
+                            {{ $dish->name }}
+                        </div>
+                    @endforeach
+                @endforeach
             @endforeach
-        @endforeach
-    </ul>
-
-    {{--        @foreach($dayparts as $daypart)--}}
-    {{--            <div class="container">--}}
-    {{--                <div class="row">--}}
-    {{--                    <div class="col">--}}
-    {{--                        {{ $daypart->name }}--}}
-    {{--                        @foreach($dishes as $dish)--}}
-    {{--                            {{ $dish->name }}--}}
-    {{--                            {{ $dish->description }}--}}
-    {{--                        @endforeach--}}
-    {{--                    </div>--}}
-    {{--                    <div class="col">--}}
-    {{--                        {{ $daypart->name }}--}}
-    {{--                        @foreach($dishes as $dish)--}}
-    {{--                            {{ $dish->name }}--}}
-    {{--                        @endforeach--}}
-    {{--                    </div>--}}
-    {{--                    <div class="col">--}}
-    {{--                        {{ $daypart->name }}--}}
-    {{--                        @foreach($dishes as $dish)--}}
-    {{--                            {{ $dish->name }}--}}
-    {{--                        @endforeach--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--    @endforeach--}}
+        </div>
+    </div>
 @endsection
