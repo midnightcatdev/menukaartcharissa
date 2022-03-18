@@ -6,7 +6,6 @@ use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
@@ -51,6 +50,14 @@ class DishController extends Controller
 
         $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
+
+        $name = $request->file('photo_name')->getClientOriginalName();
+        $path = $request->file('photo_name')->store('public/images');
+
+        $dish->photo_name = $name;
+        $dish->path = $path;
+
+        $dish->save();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht is aangemaakt');
     }

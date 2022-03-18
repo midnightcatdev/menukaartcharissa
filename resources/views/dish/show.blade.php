@@ -5,6 +5,7 @@
             <div class="row">
                 <h1 class="card-title">{{ $dish->name }}</h1>
                 <div class="col-4">
+                    {{ $dish->photo_name }}
                     <h3 class="card-subtitle mt-2">Euro:</h3>
                     <h5>€ {{ $dish->price }}</h5>
                     <h3 class="card-subtitle mt-2">Omschrijving:</h3>

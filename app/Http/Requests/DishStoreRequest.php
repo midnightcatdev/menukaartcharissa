@@ -30,6 +30,7 @@ class DishStoreRequest extends FormRequest
             'price' => 'required',
             'foodtype_id' => 'required',
             'recipes' => 'required',
+            'photo_name' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 
@@ -47,6 +48,7 @@ class DishStoreRequest extends FormRequest
             'price' => 'Prijs',
             'foodtype_id' => 'Gerecht type',
             'recipes' => 'Recepten',
+            'photo_name' => 'Foto',
         ];
     }
 }

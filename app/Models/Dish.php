@@ -13,9 +13,11 @@ class Dish extends Model
 
     protected $fillable = [
         'name',
+        'photo_name',
         'description',
         'allergies',
-        'price'
+        'price',
+        'path'
     ];
 
     /**
@@ -33,4 +35,5 @@ class Dish extends Model
     {
         return $this->hasMany(Recipe::class);
     }
+
 }

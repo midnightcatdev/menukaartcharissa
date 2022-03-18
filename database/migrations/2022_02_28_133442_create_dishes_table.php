@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('description');
             $table->string('allergies');
             $table->integer('price');
+            $table->string('photo_name');
+            $table->string('path');
             $table->timestamps();
         });
     }
