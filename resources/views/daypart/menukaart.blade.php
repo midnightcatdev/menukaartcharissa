@@ -1,9 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <div class="menukaart text-center">
-        <div class="col align-items-center">
+    <div class="row">
+        <div class="col-4">
+        </div>
+        <div class="col-4 bg-secondary">
+            <div class="text-center">
             @foreach($dayparts as $daypart)
-                <div class="daypart bg-light h2">
+                <div class="daypart h2">
                     {{ $daypart->name }}
                 </div>
                 @foreach($daypart->foodtypes as $foodtype)
@@ -17,6 +20,8 @@
                     @endforeach
                 @endforeach
             @endforeach
+                <div class="col-4"></div>
+            </div>
         </div>
     </div>
 @endsection

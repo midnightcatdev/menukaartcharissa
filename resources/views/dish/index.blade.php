@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <h1>Gerechten lijst</h1>
-    <table class="table table-bordered table-responsive-lg">
-        <tr class="table-light">
+    <table class="table table-hover table-responsive-lg">
+        <tr>
             <th class="col-lg-2">Gerecht</th>
             <th class="col-lg-2">Omschrijving</th>
-            <th class="col-lg-2">Allergenen</th>
+            <th class="col-lg-1">Allergenen</th>
             <th class="col-lg-1">Prijs</th>
             <th class="col-lg-1">Gerecht type</th>
-            <th class="col-lg-2">Recepten</th>
-            <th class="col-lg-2">Beheer functies</th>
+            <th class="col-lg-1">Recepten</th>
+            <th class="col-lg-3">Beheer functies</th>
         </tr>
         @foreach($dishes as $dish)
             <tr>
@@ -25,13 +25,12 @@
                         @endforeach
                     </ul>
                 </td>
-                <td class="d-flex">
-                    <div>
-                        <a href="{{ route('dish.show', $dish) }}" class="btn btn-secondary m-1"
-                           type="edit">Meer info </a>
+
+                <td>
+                    <div class="d-flex">
+                        <a href="{{ route('dish.show', $dish) }}" class="btn btn-secondary m-1" type="edit">Meer
+                            info</a>
                         <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success m-1" type="edit">Bewerken</a>
-                    </div>
-                    <div>
                         {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
                         {{ Form::submit('Verwijderen',['class' => 'btn btn-danger m-1']) }}
                         {{ Form::close() }}

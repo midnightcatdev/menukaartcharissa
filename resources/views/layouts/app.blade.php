@@ -48,6 +48,9 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
                     @guest
+                        <li class="nav-item">
+{{--                            <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>--}}
+                        </li>
                         @if (Route::has('login'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -60,6 +63,22 @@
                             </li>
                         @endif
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -85,17 +104,17 @@
     </nav>
 
     <main class="py-4">
-        <div class="container">
-            <div class="card">
-                <div class="card-body">
+        <div class="container border rounded-3">
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
                     @endif
                     @yield('content')
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </main>
 </div>

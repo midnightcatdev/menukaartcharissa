@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <h1>Type gerechten lijst</h1>
-    <table class="table table-bordered table-responsive-lg">
-        <tr class="bg-light">
-            <th class="col-7">Naam</th>
+    <table class="table table-hover table-responsive-lg">
+        <tr>
+            <th class="col-9">Naam</th>
             <th class="col-3">Beheer functies</th>
         </tr>
         @foreach($foodtypes as $foodtype)

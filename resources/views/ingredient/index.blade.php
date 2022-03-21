@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <h1>Ingredienten lijst</h1>
-    <table class="table table-bordered table-responsive-lg">
+    <table class="table table-hover table-responsive-lg">
         <tr>
             <th class="col-2">Naam</th>
             <th class="col-2">Meet eenheid</th>
-            <th class="col-4">Waarde</th>
-            <th class="col-4">Beheer functies</th>
+            <th class="col-5">Waarde</th>
+            <th class="col-3">Beheer functies</th>
         </tr>
         @foreach($ingredients as $ingredient)
             <tr>
