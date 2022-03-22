@@ -25,7 +25,7 @@ Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('
 
 //route for mailing uri '/endpoint', function
 Route::get('/email', function () {
-    Mail::to('ccvandelden@msn.com')->send(New WelcomeMail());
+//    Mail::to('ccvandelden@msn.com')->send(New WelcomeMail());
     return new \App\Mail\WelcomeMail();
 });
 
