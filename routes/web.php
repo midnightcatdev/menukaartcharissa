@@ -19,22 +19,18 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('menukaart');
 
-
-
 //Route::get( '/email', function() {
 //  return new WelcomeMail();
 //});
 
 //route for mailing uri '/endpoint', function
 Route::get('/email', function () {
-//    Mail::to('ccvandelden@msn.com')->send(New WelcomeMail());
+    Mail::to('ccvandelden@msn.com')->send(New WelcomeMail());
     return new \App\Mail\WelcomeMail();
 });
 
 Route::get('/send-mail', function () {
-
 //    Mail::to('ccvandelden@msn.com')->send(new MailtrapExample());
 //    return new MailtrapExample();
     return 'A message has been sent to Mailtrap!';
-
 });
