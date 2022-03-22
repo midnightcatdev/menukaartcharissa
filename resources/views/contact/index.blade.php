@@ -6,7 +6,7 @@
 <div class="container-lg d-flex">
     <div class="form-control w-50 col-6">
 <h3> Stuur een vraag </h3>
-    {{ Form::open(['url' => '']) }}
+    {{ Form::open(['route' => ['contact.store']]) }}
     {{ Form::label('username', 'Naam:', ['class' => 'form-label'] ) }}
     {{ Form::text('username', null, ['class' => 'form-control'] ) }}
     {{ Form::label('email', 'Email:', ['class' => 'form-label'] ) }}

@@ -49,7 +49,7 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-{{--                            <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>--}}
+                            <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
                         </li>
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -77,6 +77,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">

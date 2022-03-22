@@ -40,13 +40,26 @@ class InvoicePaid extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/invoice/'.$this->invoice->id);
-
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', $url)
-                    ->line('Thank you for using our application!');
+            ->from('ccvandelden@msn.com', 'Charizard van Delden')
+//            ->to($notifiable->email)
+            ->subject('Bedankt voor uw vraag')
+            ->greeting('Beste,')
+            ->attach('images/kat.jpg')
+            ->line('Bedankt voor uw vraag');
     }
+
+//    /**
+//     * Get the Slack representation of the notification.
+//     *
+//     * @param  mixed  $notifiable
+//     * @return \Illuminate\Notifications\Messages\SlackMessage
+//     */
+//    public function toSlack($notifiable)
+//    {
+//        return (new SlackMessage)
+//            ->content('One of your invoices has been paid!');
+//    }
 
     /**
      * Get the array representation of the notification.

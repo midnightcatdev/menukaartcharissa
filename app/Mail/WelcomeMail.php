@@ -29,7 +29,5 @@ class WelcomeMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.welcome');
-//        return $this->from('ccvandelden@msn.com')
-//            ->view('emails.welcome');
     }
 }

@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Route;
 
 class ContactController extends Controller
 {
@@ -35,8 +41,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Notification::route('mail', [
+            'barrett@example.com' => 'Fictional Name',
+        ])->notify(new InvoicePaid());
+//        auth()->user()->notify(new InvoicePaid());
+        return redirect()->route('contact.index')->with('success', 'Uw vraag is verzonden');
     }
+
 
     /**
      * Display the specified resource.
