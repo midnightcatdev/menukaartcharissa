@@ -3,7 +3,8 @@
 
 This is the body of my Test message.
 
-@component('mail::button', ['url' => '/'])
+@component('mail::button', ['url' => '/menukaartcharissa/public'])
+{{--@component('mail::button', ['url' => '/'])--}}
 Go to MenukaartCharissa
 @endcomponent
 
