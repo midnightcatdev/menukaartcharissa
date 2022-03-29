@@ -4,10 +4,6 @@
 
     <h1>Create new user</h1>
 
-{{--    {{ Form::model($user, ['route' => ['user.store', $user->name]]) }}--}}
-{{--    {{ Form::text('name') }}--}}
-{{--    {{ Form::close() }}--}}
-
     <div class="create-user-form form-control" >
         {{ Form::open(['route' => ['user.store']]) }}
         {{ Form::label('name', 'Enter Name') }}

@@ -16,6 +16,9 @@
                     @foreach($foodtype->dishes as $dish)
                         <div class="dish h6">
                             {{ $dish->name }}
+                            <img
+                                src="{{ asset( 'storage/'.$dish->path) }}" alt='1'
+                                class="text-center w-50">
                         </div>
                     @endforeach
                 @endforeach

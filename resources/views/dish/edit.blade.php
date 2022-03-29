@@ -3,7 +3,7 @@
 @section('content')
     <h2>Bewerk gerecht</h2>
     <div class="form-control">
-        {{ Form::model($dish,['route' => ['dish.update', $dish], 'method' => 'put']) }}
+        {{ Form::model($dish,['route' => ['dish.update', $dish], 'enctype' => 'multipart/form-data', 'method' => 'put']) }}
         {{ Form::label('name', 'Naam')}}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('description', 'Omschrijving') }}
@@ -21,6 +21,8 @@
                 {{ Form::checkbox('recipes[]', $id, null, ['class' => 'form-check-input'] ) }}
             </div>
         @endforeach
+        {{ Form::label('photo_name', 'Upload foto', ['class' => 'form-label'] ) }}
+        {{ Form::file('photo_name', ['class' => 'form-control'] ) }}
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
         {{ Form::close() }}
     </div>

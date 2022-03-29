@@ -22,6 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.scss') }}" rel="stylesheet">
     @yield('script')
     @yield('style')
 </head>
@@ -122,7 +123,16 @@
     </main>
 </div>
 </body>
-<footer>
+
+<footer class="site-footer">
+                    <nav class="nav-list p-1">
+                                <a class="" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
+                                <a class="nav-item" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
+                                <a class="nav-item" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
+                                <a class="nav-item" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
+                                <a class="nav-item" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                                <a class="nav-item" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                    </nav>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </footer>

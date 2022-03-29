@@ -27,7 +27,7 @@
                 <div class="col-8">
                     <div class="text-center">
                         <img
-                            src="{{ asset('images/Pannenkoek.avif') }}" alt='Pannenkoek Afbeelding'
+                            src="{{ asset( 'storage/'.$dish->path) }}" alt='1'
                             class="text-center w-50">
                     </div>
                 </div>

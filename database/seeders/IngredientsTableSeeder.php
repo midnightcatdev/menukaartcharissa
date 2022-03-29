@@ -136,6 +136,24 @@ class IngredientsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            13 => 
+            array (
+                'id' => 15,
+                'name' => 'Test',
+                'unit' => 'Test',
+                'value' => '99',
+                'created_at' => '2022-03-28 13:12:11',
+                'updated_at' => '2022-03-28 13:12:11',
+            ),
+            14 => 
+            array (
+                'id' => 16,
+                'name' => 'Banaan',
+                'unit' => 'gram',
+                'value' => '1000',
+                'created_at' => '2022-03-28 13:59:08',
+                'updated_at' => '2022-03-28 13:59:08',
+            ),
         ));
         
         

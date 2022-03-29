@@ -26,16 +26,16 @@ class RecipesTableSeeder extends Seeder
                 'name' => 'Zalm',
                 'steps' => 'Bak de zalm in pan',
                 'created_at' => '2022-03-14 09:34:15',
-                'updated_at' => '2022-03-15 11:32:26',
+                'updated_at' => '2022-03-28 13:58:32',
             ),
             1 => 
             array (
                 'id' => 2,
-                'dish_id' => 4,
+                'dish_id' => 1,
                 'name' => 'Aardappelpuree',
                 'steps' => 'kook aardappelen, pureer, voeg melk en room toe.',
                 'created_at' => '2022-03-14 09:35:05',
-                'updated_at' => '2022-03-15 15:16:30',
+                'updated_at' => '2022-03-28 13:58:32',
             ),
             2 => 
             array (
@@ -49,11 +49,11 @@ class RecipesTableSeeder extends Seeder
             3 => 
             array (
                 'id' => 22,
-                'dish_id' => 5,
+                'dish_id' => 3,
                 'name' => 'Biefstuk',
                 'steps' => 'Bak de biefstuk',
                 'created_at' => '2022-03-15 10:30:13',
-                'updated_at' => '2022-03-15 15:16:37',
+                'updated_at' => '2022-03-28 12:59:27',
             ),
             4 => 
             array (
@@ -71,7 +71,16 @@ class RecipesTableSeeder extends Seeder
                 'name' => 'Kalkoen',
                 'steps' => 'bakken',
                 'created_at' => '2022-03-15 15:31:15',
-                'updated_at' => '2022-03-15 15:31:50',
+                'updated_at' => '2022-03-28 14:00:05',
+            ),
+            6 => 
+            array (
+                'id' => 25,
+                'dish_id' => 8,
+                'name' => 'Bananen cake recept',
+                'steps' => 'Doe bloem banaan boter en suiker in een mengkom meng doe dan nog iets en dan nog iets',
+                'created_at' => '2022-03-28 13:59:31',
+                'updated_at' => '2022-03-28 13:59:45',
             ),
         ));
         

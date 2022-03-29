@@ -3,17 +3,24 @@
     <h1>Gerechten lijst</h1>
     <table class="table table-hover table-responsive-lg">
         <tr>
-            <th class="col-lg-2">Gerecht</th>
+            <th class="col-lg-1">Gerecht</th>
             <th class="col-lg-2">Omschrijving</th>
             <th class="col-lg-1">Allergenen</th>
             <th class="col-lg-1">Prijs</th>
             <th class="col-lg-1">Gerecht type</th>
             <th class="col-lg-1">Recepten</th>
+            <th class="col-lg-1">Foto</th>
             <th class="col-lg-3">Beheer functies</th>
         </tr>
         @foreach($dishes as $dish)
             <tr>
-                <td>{{ $dish->name }}</td>
+                <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">
+                {{ $dish->name }}</td>
+                </label>
+            </div>
                 <td>{{ $dish->description}}</td>
                 <td>{{ $dish->allergies }}</td>
                 <td>{{ $dish->price }}</td>
@@ -25,6 +32,8 @@
                         @endforeach
                     </ul>
                 </td>
+                <td> <img src="{{ asset( 'storage/'.$dish->path) }}" alt='1'
+                        class="text-center w-50"> </td>
 
                 <td>
                     <div class="d-flex">

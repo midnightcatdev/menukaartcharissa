@@ -157,6 +157,42 @@ class IngredientRecipeTableSeeder extends Seeder
                 'recipe_id' => 24,
                 'ingredient_id' => 14,
             ),
+            23 => 
+            array (
+                'id' => 36,
+                'recipe_id' => 25,
+                'ingredient_id' => 3,
+            ),
+            24 => 
+            array (
+                'id' => 37,
+                'recipe_id' => 25,
+                'ingredient_id' => 4,
+            ),
+            25 => 
+            array (
+                'id' => 38,
+                'recipe_id' => 25,
+                'ingredient_id' => 10,
+            ),
+            26 => 
+            array (
+                'id' => 39,
+                'recipe_id' => 25,
+                'ingredient_id' => 11,
+            ),
+            27 => 
+            array (
+                'id' => 40,
+                'recipe_id' => 25,
+                'ingredient_id' => 16,
+            ),
+            28 => 
+            array (
+                'id' => 41,
+                'recipe_id' => 26,
+                'ingredient_id' => 15,
+            ),
         ));
         
         

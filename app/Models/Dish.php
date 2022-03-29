@@ -17,7 +17,7 @@ class Dish extends Model
         'description',
         'allergies',
         'price',
-        'path'
+        'path',
     ];
 
     /**

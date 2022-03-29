@@ -17,11 +17,23 @@
     {{ Form::close() }}
     </div>
     <div class="col-6 border border-2 rounded ml-2 p-2">
+
+
+
         <h3>Contact gegevens</h3>
         <p> Admin Straat</p>
         <p> Admin 0000AD </p>
         <p> Utrcht </p>
         <p> tel:12345678</p>
+
+        <div id="map"></div>
+
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly"
+            async
+        ></script>
+
     </div>
 </div>
 @endsection

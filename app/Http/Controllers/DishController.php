@@ -52,7 +52,7 @@ class DishController extends Controller
         $dish->foodtype()->associate($foodtype)->save();
 
         $name = $request->file('photo_name')->getClientOriginalName();
-        $path = $request->file('photo_name')->store('public/images');
+        $path = $request->file('photo_name')->store('images','public');
 
         $dish->photo_name = $name;
         $dish->path = $path;
@@ -109,8 +109,16 @@ class DishController extends Controller
         $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
 
+        $name = $request->file('photo_name')->getClientOriginalName();
+        $path = $request->file('photo_name')->store('images','public');
+
+        $dish->photo_name = $name;
+        $dish->path = $path;
+
+        $dish->save();
+
         return redirect()->route('dish.index')->with('success', 'Gerecht gewijzigd');
-    }
+        }
 
     /**
      * Remove the specified resource from storage.
