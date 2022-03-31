@@ -1,5 +1,26 @@
+
 .site-footer {
     border: red solid 1px;
    margin: 0;
     padding: 0;
+}
+
+#map {
+    color: red;
+    border: red solid 1px;
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+}
+
+.my-google-maps-class {
+    h3 {
+        color: red;
+    };
+}
+
+.red-border {
+    border: red solid 20px;
+    display: block;
 }
