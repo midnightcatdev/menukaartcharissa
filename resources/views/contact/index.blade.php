@@ -1,57 +1,43 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>Contact</h1>
+    <div class="container p-3 d-flex">
+        <div class="col-6 p-3 border rounded">
+            <h3> Stuur een vraag </h3>
+            {{ Form::open(['route' => ['contact.store']]) }}
+            {{ Form::label('name', 'Naam:', ['class' => 'form-label'] ) }}
+            {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Naam', )) }}
+            {{ Form::label('email', 'Email:', ['class' => 'form-label'] ) }}
+            {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'uw-email@gmail.com', )) }}
+            {{ Form::label('question', 'Uw vraag:', ['class' => 'form-label'] ) }}
+            {{ Form::text('question', null, array('class' => 'form-control', 'placeholder' => 'Type hier uw vraag', )) }}
+            {{ Form::submit('Verzend vraag!',['class' => 'btn btn-success mt-3']) }}
+            {{ Form::close() }}
+        </div>
 
-<div class="container-lg d-flex">
-    <div class="form-control w-50 col-6">
-        <h3> Stuur een vraag </h3>
-        {{ Form::open(['route' => ['contact.store']]) }}
-        {{ Form::label('username', 'Naam:', ['class' => 'form-label'] ) }}
-        {{ Form::text('username', null, ['class' => 'form-control'] ) }}
-        {{ Form::label('email', 'Email:', ['class' => 'form-label'] ) }}
-        {{ Form::text('email', 'voorbeeld@gmail.com', ['class' => 'form-control'] ) }}
-        {{ Form::label('question', 'Uw vraag:', ['class' => 'form-label'] ) }}
-        {{ Form::text('question', 'Type hier uw vraag', ['class' => 'form-control'] ) }}
-        {{ Form::submit('Verzend vraag!',['class' => 'btn btn-success mt-3']) }}
-        {{ Form::close() }}
+        <div class="col-6 p-2 ms-1 border rounded">
+            <h3>Adres</h3>
+            <ul class="list-unstyled">
+                <li>Contact gegevens</li>
+                <li>Utrecht straat 37</li>
+                <li>Utrecht</li>
+                <li>Telefoon: 0666666</li>
+            </ul>
+        </div>
     </div>
-    <div class="col-6 border border-2 rounded ml-2 p-2">
 
-        <h3>My Google Maps Demo</h3>
-        <!--The div element for the map -->
-        <div id="map"></div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-        <h3>Contact gegevens</h3>
-        <p> Admin Straat</p>
-        <p> Admin 0000AD </p>
-        <p> Utrcht </p>
-        <p> tel:12345678</p>
-
-        <table width=100%" border="1">
-            <tr>
-                <td class="bg-primary"> heading 1 </td>
-                <td> heading 2 </td>
-            </tr>
-
-            <tr>
-                <td> table data2 heading 1</td>
-                <td> table data4 </td>
-            </tr>
-            <tr>
-                <td> table data2 heading 1</td>
-                <td> table data4 </td>
-            </tr>
-            <tr>
-                <td> table data2 heading 1</td>
-                <td> table data4 </td>
-            </tr>
-        </table>
-
-
-        <div id="map"></div>
-
-
+    <div class="container">
+        <div class="col-12 mb-3" id="map"></div>
     </div>
-</div>
+
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
+use http\Env\Request;
 
 class DishController extends Controller
 {
@@ -52,7 +53,7 @@ class DishController extends Controller
         $dish->foodtype()->associate($foodtype)->save();
 
         $name = $request->file('photo_name')->getClientOriginalName();
-        $path = $request->file('photo_name')->store('images','public');
+        $path = $request->file('photo_name')->store('images', 'public');
 
         $dish->photo_name = $name;
         $dish->path = $path;
@@ -110,7 +111,7 @@ class DishController extends Controller
         $dish->foodtype()->associate($foodtype)->save();
 
         $name = $request->file('photo_name')->getClientOriginalName();
-        $path = $request->file('photo_name')->store('images','public');
+        $path = $request->file('photo_name')->store('images', 'public');
 
         $dish->photo_name = $name;
         $dish->path = $path;
@@ -118,7 +119,7 @@ class DishController extends Controller
         $dish->save();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht gewijzigd');
-        }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -129,6 +130,15 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
+
         return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
     }
+
+//    public function deleteCheckedStudents(Request $request)
+//    {
+//        $ids = $request->ids;
+//        Dish::WhereIn('id', $ids)->delete();
+//
+//        return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
+//    }
 }

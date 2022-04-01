@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Menukaart') }}</title>
+    <link rel="icon" href="{{ url('./food.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,13 +20,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <!-- Styles -->
+    {{--    <!-- Styles -->--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.scss') }}" rel="stylesheet">
     @yield('script')
     @yield('style')
 
-<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+
+    <script src="./index.js"></script>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaGiQoBtiT9ySNgjyAjiLhGkfOkO30pnc&callback=initMap&v=weekly"
         async
@@ -33,6 +37,7 @@
 
 </head>
 <body>
+
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
@@ -56,7 +61,8 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                            <a class="nav-link" target="_blank"
+                               href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
                         </li>
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -113,18 +119,14 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="py-3">
         <div class="container border rounded-3">
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @yield('content')
-{{--                </div>--}}
-{{--            </div>--}}
+            @if (session('success'))
+                <div class="alert alert-success mt-3">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @yield('content')
         </div>
     </main>
 </div>
@@ -132,47 +134,46 @@
 </body>
 
 <footer class="site-footer">
-                    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" target="_blank" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
-                                </li>
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                @endif
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <ul class="navbar-nav ms-auto">
+            <!-- Authentication Links -->
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                </li>
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
-                                </li>
-                            @endguest
-                        </ul>
-                    </nav>
-
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                </li>
+            @endguest
+        </ul>
+    </nav>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
