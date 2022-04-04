@@ -10,15 +10,16 @@
     <title>{{ config('app.name', 'Menukaart') }}</title>
     <link rel="icon" href="{{ url('./food.png') }}">
 
-    <!-- Fonts -->
+{{--    --}}{{--  font awesome  --}}
+{{--    <script src="https://kit.fontawesome.com/7974c71b84.js" crossorigin="anonymous"></script>--}}
+
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
           integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     {{--    <!-- Styles -->--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

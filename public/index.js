@@ -1,6 +1,6 @@
 function initMap() {
-//     // Create a new StyledMapType object, passing it an array of styles,
-//     // and the name to be displayed on the map type control.
+// Create a new StyledMapType object, passing it an array of styles,
+// and the name to be displayed on the map type control.
     const styledMapType = new google.maps.StyledMapType(
         [
             {
@@ -78,3 +78,5 @@ function initMap() {
     clwebmap.mapTypes.set("styled_map", styledMapType);
     clwebmap.setMapTypeId("styled_map");
 }
+
+

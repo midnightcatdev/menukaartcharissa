@@ -6,7 +6,7 @@ use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
@@ -134,11 +134,21 @@ class DishController extends Controller
         return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
     }
 
-//    public function deleteCheckedStudents(Request $request)
-//    {
-//        $ids = $request->ids;
-//        Dish::WhereIn('id', $ids)->delete();
-//
-//        return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
-//    }
+    public function destroySelected(Request $request)
+    {
+        Dish::whereIn('id', $request->get('dishes'))->delete();
+        return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
+    }
+
+    public function multipleEdit(Request $request)
+    {
+        $ids = $request->get('dishes');
+
+        dd($request->all());
+
+        $view = view('dish.multi-edit');
+
+        return $view;
+    }
+
 }
