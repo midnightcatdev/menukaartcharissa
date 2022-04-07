@@ -104,6 +104,7 @@ class DishController extends Controller
     public function update(DishStoreRequest $request, Dish $dish)
     {
         $dish->update($request->all());
+
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
 
@@ -140,15 +141,39 @@ class DishController extends Controller
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
     }
 
-    public function multipleEdit(Request $request)
+    public function multiEdit(Request $request)
     {
-        $ids = $request->get('dishes');
-
-        dd($request->all());
-
         $view = view('dish.multi-edit');
-
+        $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
         return $view;
     }
 
+    public function multiUpdate(Request $request)
+    {
+        $input = $request->get('dishes');
+
+        foreach ($input as $key => $dish) {
+            $database_dish = Dish::find($key);
+            $database_dish->update([
+                'price' => $dish['price'],
+            ]);
+        }
+        return redirect()->route('dish.index')->with('success', 'Gerecht prijzen gewijzigd');
+    }
+
+//    public function multiUpdate(Request $request)
+//    {
+//        $x = 9;
+//        $y = 100;
+//
+//        $input = $request->get('dishes');
+//
+//        foreach ($input as $key => $dish) {
+//            $database_dish = Dish::find($key);
+//            $database_dish->update([
+//                'price' => $dish['price'] / $y * $x + $dish['price'],
+//            ]);
+//        }
+//        return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');
+//    }
 }

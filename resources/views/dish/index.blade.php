@@ -20,8 +20,11 @@
         <tbody>
 
         {{--        {{ Form::submit('Verwijder',['class' => 'btn btn-danger m-1']) }}--}}
-        {{ Form::submit('Edit',['class' => 'btn btn-success m-1']) }}
+        {{--        {{  link_to_route('dish/destroy-selected',['class' => 'btn btn-danger m-1']) }}--}}
+        {{--        {{  Form::link_to_route('dish.destroy-selected', $title = null, $parameters = [], $attributes = []) }}--}}
+        {{--        {{ Form::link_to_action('DishController@destroy-selected', $title = null, $parameters = [], $attributes = []) }}--}}
 
+        {{ Form::submit('Edit',['class' => 'btn btn-success m-1']) }}
 
         @foreach($dishes as $dish)
             <tr>
