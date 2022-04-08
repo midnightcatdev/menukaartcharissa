@@ -3,9 +3,11 @@
 Route::resource('daypart', \App\Http\Controllers\DaypartController::class);
 Route::resource('foodtype', \App\Http\Controllers\FoodtypeController::class);
 
-Route::delete('dish/destroy-selected', [\App\Http\Controllers\DishController::class, 'destroySelected'])->name('dish.destroy-selected');
+Route::get('dish/multi-select', [\App\Http\Controllers\DishController::class, 'selectItems'])->name('dish.multi-select');
+Route::delete('dish/multi-select-destroy', [\App\Http\Controllers\DishController::class, 'multiSelectDestroy'])->name('dish.multi-select-destroy');
+
 Route::get('dish/multi-edit', [\App\Http\Controllers\DishController::class, 'multiEdit'])->name('dish.multi-edit');
-//Route::get('dish/multi-update', [\App\Http\Controllers\DishController::class, 'updateBtw'])->name('dish.multi-update');
+Route::put('dish/multi-update-btw', [\App\Http\Controllers\DishController::class, 'multiUpdateBtw'])->name('dish.multi-update-btw');
 Route::put('dish/multi-update', [\App\Http\Controllers\DishController::class, 'multiUpdate'])->name('dish.multi-update');
 Route::resource('dish', \App\Http\Controllers\DishController::class);
 

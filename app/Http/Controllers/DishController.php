@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DishMultiStoreRequest;
 use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
@@ -135,13 +136,28 @@ class DishController extends Controller
         return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
     }
 
-    public function destroySelected(Request $request)
+    public function selectItems(DishMultiStoreRequest $request)
     {
-        Dish::whereIn('id', $request->get('dishes'))->delete();
+        $view = view('dish.multi-select');
+        $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
+        return $view;
+    }
+
+    public function multiSelectDestroy(Request $request)
+    {
+        $input = $request->get('dishes');
+
+        foreach ($input as $key => $dish) {
+            $database_dish = Dish::find($key);
+            $database_dish->delete([
+                $dish,
+            ]);
+        }
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
     }
 
-    public function multiEdit(Request $request)
+
+    public function multiEdit(DishMultiStoreRequest $request)
     {
         $view = view('dish.multi-edit');
         $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
@@ -150,6 +166,7 @@ class DishController extends Controller
 
     public function multiUpdate(Request $request)
     {
+
         $input = $request->get('dishes');
 
         foreach ($input as $key => $dish) {
@@ -161,19 +178,19 @@ class DishController extends Controller
         return redirect()->route('dish.index')->with('success', 'Gerecht prijzen gewijzigd');
     }
 
-//    public function multiUpdate(Request $request)
-//    {
-//        $x = 9;
-//        $y = 100;
-//
-//        $input = $request->get('dishes');
-//
-//        foreach ($input as $key => $dish) {
-//            $database_dish = Dish::find($key);
-//            $database_dish->update([
-//                'price' => $dish['price'] / $y * $x + $dish['price'],
-//            ]);
-//        }
-//        return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');
-//    }
+    public function multiUpdateBtw(Request $request)
+    {
+        $x = 9;
+        $y = 100;
+
+        $input = $request->get('dishes');
+
+        foreach ($input as $key => $dish) {
+            $database_dish = Dish::find($key);
+            $database_dish->update([
+                'price' => $dish['price'] / $y * $x + $dish['price'],
+            ]);
+        }
+        return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');
+    }
 }

@@ -1,14 +1,16 @@
-@extends('layouts.app')
-
+@extends('layouts.header')
+@extends('layouts.create')
 @section('content')
-    <h1>Voeg nieuw type gerecht toe</h1>
+
     <div class="create-form form-control">
+        <h2>Nieuw gerecht type</h2>
         {{ Form::open(['route' => ['foodtype.store']]) }}
         {{ Form::label('name', 'Voer type gerecht in') }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('daypart_id', 'Selecteer dagdeel') }}
         {{ Form::select('daypart_id', $dayparts, null, ['class' => 'form-control']) }}
-        {{ Form::submit('Indienen!',['class' => 'btn btn-success mt-3']) }}
+        {{ Form::submit('Indienen',['class' => 'btn btn-success mt-3']) }}
+        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 

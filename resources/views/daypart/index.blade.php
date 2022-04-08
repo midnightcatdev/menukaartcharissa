@@ -1,12 +1,15 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Dagdelen lijst</h1>
-    <table class="table table-hover table-responsive-lg">
+
+    <table class="table table-hover table-striped table-responsive">
+        <thead>
         <tr>
-            <th class="col-lg-2">Dagdeel</th>
+            <th class="col-lg-2">Dagdelen lijst</th>
             <th class="col-lg-7">Type gerecht</th>
             <th class="col-lg-3">Beheer functies</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             @foreach ($dayparts as $daypart)
                 <td>{{ $daypart->name }}</td>
@@ -23,13 +26,14 @@
                             info</a>
                         <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success m-1"
                            type="edit">Bewerken</a>
-                            {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
-                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger m-1']) }}
-                            {{ Form::close() }}
+                        {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
+                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger m-1']) }}
+                        {{ Form::close() }}
                     </div>
                 </td>
         </tr>
         @endforeach
+        </tbody>
     </table>
-    <a href="{{ route('daypart.create') }}" class="btn btn-success mt-0 m-2" type="edit">Nieuw dagdeel</a>
+    <a href="{{ route('daypart.create') }}" class="btn btn-success p-2 m-1" type="edit">Nieuw dagdeel</a>
 @endsection

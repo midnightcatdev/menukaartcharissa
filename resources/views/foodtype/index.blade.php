@@ -1,11 +1,14 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Type gerechten lijst</h1>
-    <table class="table table-hover table-responsive-lg">
+
+    <table class="table table-hover table-striped">
+        <thead>
         <tr>
-            <th class="col-9">Naam</th>
+            <th class="col-9">Type gerechten lijst</th>
             <th class="col-3">Beheer functies</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach($foodtypes as $foodtype)
             <tr>
                 <td>{{ $foodtype->name }}</td>
@@ -24,6 +27,7 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
     <a href="{{ route('foodtype.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg type gerecht toe</a>
     <div> {{ $foodtypes->links() }} </div>

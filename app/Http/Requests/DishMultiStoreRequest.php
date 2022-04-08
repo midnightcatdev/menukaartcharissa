@@ -24,14 +24,7 @@ class DishMultiStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'price' => 'required',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'price' => 'Prijs',
+            'dishes' => 'required'
         ];
     }
 }
