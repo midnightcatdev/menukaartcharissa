@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DishMultiStoreRequest;
 use App\Http\Requests\DishStoreRequest;
 use App\Models\Dish;
 use App\Models\Foodtype;
@@ -136,7 +135,7 @@ class DishController extends Controller
         return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
     }
 
-    public function selectItems(DishMultiStoreRequest $request)
+    public function selectItems(Request $request)
     {
         $view = view('dish.multi-select');
         $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
@@ -145,9 +144,9 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
-        $request->get('dishes');
+        $input = $request->get('dishes');
 
-        foreach ($request as $key => $dish) {
+        foreach ($input as $key => $dish) {
             $database_dish = Dish::find($key);
             $database_dish->delete([
                 $dish,
@@ -157,7 +156,7 @@ class DishController extends Controller
     }
 
 
-    public function multiEdit(DishMultiStoreRequest $request)
+    public function multiEdit(Request $request)
     {
         $view = view('dish.multi-edit');
         $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
@@ -166,10 +165,9 @@ class DishController extends Controller
 
     public function multiUpdate(Request $request)
     {
+        $input = $request->get('dishes');
 
-        $request->get('dishes');
-
-        foreach ($request as $key => $dish) {
+        foreach ($input as $key => $dish) {
             $database_dish = Dish::find($key);
             $database_dish->update([
                 'price' => $dish['price'],

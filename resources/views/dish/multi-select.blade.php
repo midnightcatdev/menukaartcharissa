@@ -3,12 +3,12 @@
 
     <div class="form-control">
         <h2> De volgende gerechten verwijderen? </h2>
-        {{ Form::open(['route' => ['dish.multi-select-destroy'], 'method' => 'delete'] )  }}
+        {{ Form::open(['route' => ['dish.multi-select-destroy'], 'enctype' => 'multipart/form-data', 'method' => 'delete']) }}
         <ul>
             @foreach($dishes as $dish)
                 <li>
                     {{ Form::label('dishes['.$dish->id.'][name]', 'Naam', $dish->name, ['class' => 'form-label'] ) }}
-                    {{ Form::text('dishes['. $dish->id .'][name]', $dish->name, null, ['class' => ''] ) }}
+                    {{ Form::text('dishes['. $dish->id .'][name]', $dish->name, ['class' => ''] ) }}
                 </li>
             @endforeach
         </ul>
