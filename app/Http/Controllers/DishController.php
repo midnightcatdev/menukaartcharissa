@@ -144,17 +144,11 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
-        $input = $request->get('dishes');
 
-        foreach ($input as $key => $dish) {
-            $database_dish = Dish::find($key);
-            $database_dish->delete([
-                $dish,
-            ]);
-        }
+//        dd($request->all());
+        Dish::WhereIn('id', $request->get('dishes'))->delete();
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
     }
-
 
     public function multiEdit(Request $request)
     {

@@ -18,8 +18,11 @@
         </tr>
         </thead>
         <tbody>
-        <button class="btn btn-success m-1 p-2" type="submit" formaction="./dish/multi-edit">edit</button>
-        <button class="btn btn-danger m-1 p-2" type="submit" formaction="./dish/multi-select">Verwijder alle selecteerde
+        <button class="btn btn-success m-1 p-2" type="submit" formaction="{{ route('dish.multi-edit') }}">edit
+        </button>
+        <button class="btn btn-danger m-1 p-2" type="submit" formaction="{{ route('dish.multi-select') }}">Verwijder
+            alle
+            geselecteerde
         </button>
 
         @foreach($dishes as $dish)
@@ -61,6 +64,5 @@
 
     <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2">Voeg toe</a>
     <div class="pagination justify-content-end"> {{ $dishes->links() }} </div>
-
 @endsection
 
