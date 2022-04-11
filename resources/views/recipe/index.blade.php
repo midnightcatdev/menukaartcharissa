@@ -38,6 +38,6 @@
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('recipe.create') }}" class="btn btn-success m-2" type="edit">Voeg recept toe</a>
+    <a href="{{ route('recipe.create') }}" class="btn btn-success m-2">Voeg recept toe</a>
     <div> {{ $recipes->links() }} </div>
 @endsection

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1> De volgende gerechten verwijderen? </h1>
     <div class="form-control">
+        <h2> De volgende gerechten verwijderen? </h2>
         {{ Form::open(['route' => ['dish.multi-select-destroy'], 'method' => 'delete'] )  }}
         <ul>
             @foreach($dishes as $dish)
@@ -12,7 +12,7 @@
                 </li>
             @endforeach
         </ul>
-        {{ Form::submit('Ja verwijder', ['class' => 'btn btn-danger']) }}
+        {{ Form::submit('Ja verwijder', ['class' => 'btn btn-danger m-1 p-2']) }}
         <a href="{{ route('dish.index') }}" class="btn btn-secondary m-1 p-2">Nee ga terug</a>
     {{ Form::close() }}
 @endsection

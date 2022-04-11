@@ -145,9 +145,9 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
-        $input = $request->get('dishes');
+        $request->get('dishes');
 
-        foreach ($input as $key => $dish) {
+        foreach ($request as $key => $dish) {
             $database_dish = Dish::find($key);
             $database_dish->delete([
                 $dish,
@@ -167,9 +167,9 @@ class DishController extends Controller
     public function multiUpdate(Request $request)
     {
 
-        $input = $request->get('dishes');
+        $request->get('dishes');
 
-        foreach ($input as $key => $dish) {
+        foreach ($request as $key => $dish) {
             $database_dish = Dish::find($key);
             $database_dish->update([
                 'price' => $dish['price'],
@@ -180,15 +180,15 @@ class DishController extends Controller
 
     public function multiUpdateBtw(Request $request)
     {
-        $x = 9;
-        $y = 100;
+        $negen = 9;
+        $honderd = 100;
 
         $input = $request->get('dishes');
 
         foreach ($input as $key => $dish) {
             $database_dish = Dish::find($key);
             $database_dish->update([
-                'price' => $dish['price'] / $y * $x + $dish['price'],
+                'price' => $dish['price'] / $honderd * $negen + $dish['price'],
             ]);
         }
         return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');

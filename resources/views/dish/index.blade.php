@@ -3,7 +3,7 @@
 @section('content')
 
     <table class="table table-hover table-striped">
-        {{ Form::open(['route' => ['dish.multi-edit'], 'method' => 'get']) }}
+        {{ Form::open(['route' => ['dish.multi-edit'], 'enctype' => 'multipart/form-data', 'method' => 'get']) }}
         <thead>
         <tr>
             <th>Select</th>
@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <button class="btn btn-success m-1 p-2" type="submit"> edit</button>
+        <button class="btn btn-success m-1 p-2" type="submit" formaction="./dish/multi-edit">edit</button>
         <button class="btn btn-danger m-1 p-2" type="submit" formaction="./dish/multi-select">Verwijder alle selecteerde
         </button>
 
@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     {{ Form::checkbox('dishes[]', $dish->id) }}
-                    {{ Form::close() }}
+
                 </td>
                 <td>{{ $dish->name }}</td>
                 <td>{{ $dish->description}}</td>
@@ -42,7 +42,6 @@
                 </td>
                 <td><img src="{{ asset( 'storage/'.$dish->path) }}" alt='1'
                          class="text-center w-50"></td>
-
                 <td>
                     <div class="d-flex">
                         <a href="{{ route('dish.show', $dish) }}"
@@ -52,15 +51,15 @@
                            type="edit">Bewerken</a>
                         {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
                         {{ Form::submit('Verwijder',['class' => 'btn btn-danger m-1 p-2']) }}
-                        {{ Form::close() }}
                     </div>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    {{ Form::close() }}
 
-    <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2" type="edit">Voeg toe</a>
+    <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2">Voeg toe</a>
     <div class="pagination justify-content-end"> {{ $dishes->links() }} </div>
 
 @endsection
