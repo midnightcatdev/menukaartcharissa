@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,9 +42,27 @@ class RegisterController extends Controller
     }
 
     /**
+     * Handle account registration request
+     *
+     * @param RegisterRequest $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function register(RegisterRequest $request)
+    {
+        $user = User::create($request->validated());
+
+        event(new Registered($user));
+
+        auth()->login($user);
+
+        return redirect('/')->with('success', "Account successfully registered.");
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -59,15 +77,16 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return $user;
     }
 }

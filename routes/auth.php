@@ -15,4 +15,8 @@ Route::resource('recipe', \App\Http\Controllers\RecipeController::class);
 Route::resource('ingredient', \App\Http\Controllers\IngredientController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class);
 
+//Route::get('/email/verify', function () {
+//    return view('auth.verify');
+//})->middleware('auth')->name('verification.notice');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -38,6 +38,11 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+
+//            Route::get('/email/verify', function () {
+//                return view('auth.verify-email');
+//            })->middleware('auth')->name('verification.notice');
+
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
@@ -47,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware(['web','auth'])
+            Route::middleware(['web', 'auth'])
                 ->namespace($this->namespace)
                 ->group(base_path('routes/auth.php'));
         });

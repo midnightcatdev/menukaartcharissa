@@ -52,8 +52,6 @@
                            type="edit">Details</a>
                         <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success m-1 p-2 "
                            type="edit">Bewerken</a>
-                        {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijder',['class' => 'btn btn-danger m-1 p-2']) }}
                     </div>
                 </td>
             </tr>
