@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
-use App\Http\Requests\ContactStoreRequest;
 
 class ContactController extends Controller
 {
@@ -36,7 +35,7 @@ class ContactController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactStoreRequest $request)
+    public function store(Request $request)
     {
         $name = $request->input('name');
         $email = $request->input('email');

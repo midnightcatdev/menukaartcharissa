@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,19 +46,36 @@ class RegisterController extends Controller
     /**
      * Handle account registration request
      *
-     * @param RegisterRequest $request
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function register(RegisterRequest $request)
+    public function register(Request $request)
     {
-        $user = User::create($request->validated());
+
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
 
         event(new Registered($user));
 
-        auth()->login($user);
+        $this->guard()->login($user);
 
-        return redirect('/')->with('success', "Account successfully registered.");
+        return redirect($this->redirectPath());
+
+//        return redirect('/contact')->with('success', "Account successfully registered.");
+
+//        return redirect('/password/confirm')->with('success', "Account successfully registered.");
+
+
+//        Route::get('/email/verify', function () {
+//            return view('auth.verify-email');
+//        })->middleware('auth')->name('verification.notice');
+
+//        return view('auth.verify-email');
+
+//    })->middleware('auth')->name('verification.notice');
+
     }
 
     /**
