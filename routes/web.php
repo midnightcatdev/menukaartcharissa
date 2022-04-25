@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware(['signed']);
-Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+//Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+//Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+//Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('menukaart');
 Route::resource('contact', \App\Http\Controllers\ContactController::class);

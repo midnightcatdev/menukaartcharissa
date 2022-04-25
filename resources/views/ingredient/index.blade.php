@@ -4,10 +4,10 @@
     <table class="table table-hover table-striped">
         <thead>
         <tr>
-            <th class="col-2">Ingredient</th>
-            <th class="col-2">Meet eenheid</th>
-            <th class="col-5">Waarde</th>
-            <th class="col-3">Beheer functies</th>
+            <th class="col-lg-2">Ingredient</th>
+            <th class="col-lg-2">Meet eenheid</th>
+            <th class="col-lg-5">Waarde</th>
+            <th class="col-lg-3">Beheer functies</th>
         </tr>
         </thead>
         <tbody>

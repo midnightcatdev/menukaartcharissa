@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Dish;
+use App\Policies\DishPolicy;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Dish::class => DishPolicy::class,
     ];
 
     /**

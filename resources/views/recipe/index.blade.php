@@ -23,14 +23,15 @@
                         </ul>
                 @endforeach
                 <td> {{ $recipe->dish->name ?? 'none' }} </td>
-                <td>
-                    <div class="d-flex">
-                        <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary m-1" type="edit">Meer
+                <td class="d-flex">
+                    <div class="edit-button me-1">
+                        <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary" type="edit">Meer
                             info</a>
-                        <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success m-1"
-                           type="edit">Bewerken</a>
+                        <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success" type="edit">Bewerken</a>
+                    </div>
+                    <div class="delete-button">
                         {{ Form::open(['route' => ['recipe.destroy', $recipe], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger m-1']) }}
+                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                         {{ Form::close() }}
                     </div>
                 </td>

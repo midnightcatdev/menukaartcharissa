@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -50,34 +49,34 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
-    {
-
-        $this->validator($request->all())->validate();
-
-        $user = $this->create($request->all());
-
-        event(new Registered($user));
-
-        $this->guard()->login($user);
-
-        return redirect($this->redirectPath());
-
-//        return redirect('/contact')->with('success', "Account successfully registered.");
-
-//        return redirect('/password/confirm')->with('success', "Account successfully registered.");
-
-
-//        Route::get('/email/verify', function () {
-//            return view('auth.verify-email');
-//        })->middleware('auth')->name('verification.notice');
-
-//        return view('auth.verify-email');
-
-//    })->middleware('auth')->name('verification.notice');
-
-    }
-
+//    public function register(Request $request)
+//    {
+//
+//        $this->validator($request->all())->validate();
+//
+//        $user = $this->create($request->all());
+//
+//        event(new Registered($user));
+//
+//        $this->guard()->login($user);
+//
+//        return redirect($this->redirectPath());
+//
+////        return redirect('/contact')->with('success', "Account successfully registered.");
+//
+////        return redirect('/password/confirm')->with('success', "Account successfully registered.");
+//
+//
+////        Route::get('/email/verify', function () {
+////            return view('auth.verify-email');
+////        })->middleware('auth')->name('verification.notice');
+//
+////        return view('auth.verify-email');
+//
+////    })->middleware('auth')->name('verification.notice');
+//
+//    }
+//
     /**
      * Get a validator for an incoming registration request.
      *
