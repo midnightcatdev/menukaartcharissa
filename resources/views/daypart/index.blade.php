@@ -22,12 +22,12 @@
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary m-1 " type="edit">Meer
+                        <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary me-1" type="edit">Meer
                             info</a>
-                        <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success m-1"
+                        <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success me-1"
                            type="edit">Bewerken</a>
                         {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger m-1']) }}
+                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                         {{ Form::close() }}
                     </div>
                 </td>

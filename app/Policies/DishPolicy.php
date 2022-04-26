@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\Dish;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Auth\Access\Response;
 
 class DishPolicy
 {
@@ -54,11 +53,18 @@ class DishPolicy
      */
     public function update(User $user, Dish $dish)
     {
-//        dd($user);
+//        dd($user->role_id);
 
-        return $user->id === $dish->user_id
-            ? Response::allow()
-            : Response::deny('You do not own this post.');
+//        return $user->role_id;
+
+//        dd($user->role_id);
+
+//        if (user role_id = 1)
+
+//        @if (Auth::guard($guard)->check() && Auth::user()->role->id==1)
+//        return redirect()->route('admin.dashboard');
+//  @endif
+
     }
 
     /**
@@ -70,7 +76,7 @@ class DishPolicy
      */
     public function delete(User $user, Dish $dish)
     {
-//        return $user->id === $dish->user_id;
+        //
     }
 
     /**

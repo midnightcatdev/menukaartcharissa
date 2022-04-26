@@ -103,6 +103,10 @@ class DishController extends Controller
      */
     public function update(DishStoreRequest $request, Dish $dish)
     {
+        if ($request->user()->cannot('update', $dish)) {
+            abort(403);
+        }
+
         $dish->update($request->all());
 
         $foodtype = Foodtype::find($request->get('foodtype_id'));
@@ -144,8 +148,12 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
+        if ($request->user('2')->cannot('delete', $request)) {
+            abort(403);
+        } else if ($request->user('1')->can('delete', $request)) {
+            abort(403);
+        }
 
-//        dd($request->all());
         Dish::WhereIn('id', $request->get('dishes'))->delete();
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
     }

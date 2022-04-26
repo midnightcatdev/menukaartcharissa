@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class UserController extends Controller
     {
         $view = view('user.index');
         $view->users = User::get();
+        $view->roles = Role::get();
+        $view->role = Role::pluck('role');
 
         return $view;
     }
@@ -62,9 +65,14 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(user $user)
     {
-        //
+        $view = view('user.edit');
+        $view->user = $user;
+        $view->roles = Role::get();
+        $view->role = Role::pluck('role');
+
+        return $view;
     }
 
     /**
@@ -74,9 +82,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+        return redirect()->route('user.index');
+
     }
 
     /**

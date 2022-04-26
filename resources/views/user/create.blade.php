@@ -1,10 +1,9 @@
 @extends('layouts.app')
-
-@section('create.user')
+@section('content')
 
     <h1>Create new user</h1>
 
-    <div class="create-user-form form-control" >
+    <div class="create-user-form form-control">
         {{ Form::open(['route' => ['user.store']]) }}
         {{ Form::label('name', 'Enter Name') }}
         {{ Form::text('name') }}

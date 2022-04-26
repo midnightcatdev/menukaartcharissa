@@ -17,7 +17,7 @@
                 <td>{{ $ingredient->unit }}</td>
                 <td>{{ $ingredient->value }}</td>
                 <td class="d-flex">
-                    <div class="edit-button me-1">
+                    <div class="me-1">
                         <a href="{{ route('ingredient.show', $ingredient) }}" class="btn btn-secondary" type="edit">Meer
                             info</a>
                         <a href="{{ route('ingredient.edit', $ingredient) }}" class="btn btn-success" type="edit">Bewerken</a>

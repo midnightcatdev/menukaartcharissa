@@ -1,17 +1,33 @@
 @extends('layouts.app')
+@section('content')
 
-<h1>user</h1>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th class="col-lg-2">Gebruikers naam</th>
+            <th class="col-lg-2">Rol</th>
+            <th class="col-lg-2"> Beheerfuncties</th>
+        </tr>
+        </thead>
+        <tbody>
 
-<a href="{{ route('user.create') }}" class="btn btn-success" type="edit">Create new user</a>
+        {{--        {{ $role }}--}}
 
-@foreach ($users as $user)
-
-    <h1> {{ $user->name }} </h1>
-    <h2> {{ $user->email }} </h2>
-    <div class="delete-user-button">
-        {{ Form::open(['route' => ['user.destroy', $user], 'method' => 'delete']) }}
-        {{ Form::submit('Delete',['class' => 'btn btn-danger']) }}
-        {{ Form::close() }}
-    </div>
-
-@endforeach
+        @foreach($users as $user)
+            <tr>
+                <td>{{ $user->name }}</td>
+                <td>
+                    {{--                    {{ $user->roles->role ?? 'onbekend'}}--}}
+                    {{ $user->role_id }}
+                </td>
+                <td class="me-1">
+                    <a href="{{ route('user.edit', $user) }}" class="btn btn-success"
+                       type="edit">Bewerken</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <a href="{{ route('user.create') }}" class="btn btn-success mt-0 m-2"> Nieuwe gebruiker </a>
+    {{--    <div> {{ $user->links() }} </div>--}}
+@endsection
