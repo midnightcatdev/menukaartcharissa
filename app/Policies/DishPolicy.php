@@ -55,6 +55,8 @@ class DishPolicy
     {
 //        dd($user->role_id);
 
+        return $user->role == 'admin';
+
 //        return $user->role_id;
 
 //        dd($user->role_id);

@@ -103,9 +103,9 @@ class DishController extends Controller
      */
     public function update(DishStoreRequest $request, Dish $dish)
     {
-        if ($request->user()->cannot('update', $dish)) {
-            abort(403);
-        }
+//        if ($request->user()->can('update', $dish)) {
+//            abort(403);
+//        }
 
         $dish->update($request->all());
 
@@ -148,9 +148,10 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
-        if ($request->user('2')->cannot('delete', $request)) {
+        if ($request->user()->can('delete', $request)) {
             abort(403);
-        } else if ($request->user('1')->can('delete', $request)) {
+
+        } else if ($request->user()->can('delete', $request)) {
             abort(403);
         }
 
