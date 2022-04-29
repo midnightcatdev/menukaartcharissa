@@ -15,10 +15,10 @@ class Role extends Model
     ];
 
     /**
-     * Get the user that owns the role.
+     * Get the users that owns the role.
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }

@@ -39,16 +39,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
 
-//            Route::get('/email/verify', function () {
-//                return view('auth.verify-email');
-//            })->middleware('auth')->name('verification.notice');
-
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web'])
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 

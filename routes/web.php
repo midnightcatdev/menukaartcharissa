@@ -20,7 +20,7 @@ Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('
 Route::resource('contact', \App\Http\Controllers\ContactController::class);
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('daypart', \App\Http\Controllers\DaypartController::class);
     Route::resource('foodtype', \App\Http\Controllers\FoodtypeController::class);
 

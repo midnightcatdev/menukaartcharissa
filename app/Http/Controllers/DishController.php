@@ -148,12 +148,12 @@ class DishController extends Controller
 
     public function multiSelectDestroy(Request $request)
     {
-        if ($request->user()->can('delete', $request)) {
-            abort(403);
-
-        } else if ($request->user()->can('delete', $request)) {
-            abort(403);
-        }
+//        if ($request->user()->can('delete', $request)) {
+//            abort(403);
+//
+//        } else if ($request->user()->can('delete', $request)) {
+//            abort(403);
+//        }
 
         Dish::WhereIn('id', $request->get('dishes'))->delete();
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
