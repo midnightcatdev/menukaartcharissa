@@ -24,16 +24,22 @@
                     <div class="d-flex">
                         <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary me-1" type="edit">Meer
                             info</a>
-                        <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success me-1"
-                           type="edit">Bewerken</a>
-                        {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                        @can('update', $daypart)
+                            <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success me-1"
+                               type="edit">Bewerken</a>
+                        @endcan
+                        @can('delete', $daypart)
+                            {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
+                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </div>
                 </td>
         </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('daypart.create') }}" class="btn btn-success p-2 m-1" type="edit">Nieuw dagdeel</a>
+    @can('create', $daypart)
+        <a href="{{ route('daypart.create') }}" class="btn btn-success p-2 m-1" type="edit">Nieuw dagdeel</a>
+    @endcan
 @endsection

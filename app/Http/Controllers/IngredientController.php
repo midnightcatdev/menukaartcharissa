@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IngredientStoreRequest;
 use App\Models\Ingredient;
-use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
@@ -27,8 +26,9 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Ingredient $ingredient)
     {
+        $this->authorize('create', $ingredient);
         $view = view('ingredient.create');
 
         return $view;
@@ -84,6 +84,7 @@ class IngredientController extends Controller
      */
     public function update(IngredientStoreRequest $request, Ingredient $ingredient)
     {
+        $this->authorize('update', $ingredient);
         $ingredient->update($request->all());
 
         return redirect()->route('ingredient.index')->with('success', 'Ingredient gewijzigd');
@@ -97,7 +98,9 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
+        $this->authorize('delete', $ingredient);
         $ingredient->delete();
+
         return redirect()->route('ingredient.index')->with('success', 'Ingredient verwijdert');
     }
 }

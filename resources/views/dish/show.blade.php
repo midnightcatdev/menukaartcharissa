@@ -33,12 +33,16 @@
                 </div>
                 <div class="d-flex">
                     <div class="edit-button me-1">
-                        <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success" type="edit">Bewerken</a>
+                        @can('update', $dish)
+                            <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success" type="edit">Bewerken</a>
+                        @endcan
                     </div>
                     <div class="delete-button me-1">
-                        {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                        @can('delete', $dish)
+                            {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
+                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </div>
                     <div class="back-button">
                         <a href="{{ route('dish.index', $dish) }}" class="btn btn-info text-white" type="edit">Gerechten

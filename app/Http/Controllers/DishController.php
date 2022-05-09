@@ -28,8 +28,9 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Dish $dish)
     {
+        $this->authorize('create', $dish);
         $view = view('dish.create');
         $view->foodtypes = Foodtype::pluck('name', 'id');
         $view->recipes = Recipe::pluck('name', 'id');
@@ -48,16 +49,12 @@ class DishController extends Controller
         $dish = Dish::create($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
-
         $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
-
         $name = $request->file('photo_name')->getClientOriginalName();
         $path = $request->file('photo_name')->store('images', 'public');
-
         $dish->photo_name = $name;
         $dish->path = $path;
-
         $dish->save();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht is aangemaakt');
@@ -72,7 +69,6 @@ class DishController extends Controller
     public function show(Dish $dish)
     {
         $view = view('dish.show');
-
         $view->dish = Dish::with('recipes', 'recipes.ingredients')->find($dish->id);
 
         return $view;
@@ -103,24 +99,16 @@ class DishController extends Controller
      */
     public function update(DishStoreRequest $request, Dish $dish)
     {
-//        if ($request->user()->can('update', $dish)) {
-//            abort(403);
-//        }
-
+        $this->authorize('update', $dish);
         $dish->update($request->all());
-
         $foodtype = Foodtype::find($request->get('foodtype_id'));
         $recipes = Recipe::find($request->get('recipes'));
-
         $dish->recipes()->saveMany($recipes);
         $dish->foodtype()->associate($foodtype)->save();
-
         $name = $request->file('photo_name')->getClientOriginalName();
         $path = $request->file('photo_name')->store('images', 'public');
-
         $dish->photo_name = $name;
         $dish->path = $path;
-
         $dish->save();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht gewijzigd');
@@ -134,6 +122,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        $this->authorize('destroy', $dish);
         $dish->delete();
 
         return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
@@ -146,16 +135,11 @@ class DishController extends Controller
         return $view;
     }
 
-    public function multiSelectDestroy(Request $request)
+    public function multiSelectDestroy(Dish $dishes, Request $request)
     {
-//        if ($request->user()->can('delete', $request)) {
-//            abort(403);
-//
-//        } else if ($request->user()->can('delete', $request)) {
-//            abort(403);
-//        }
-
+        $this->authorize('update', $dishes);
         Dish::WhereIn('id', $request->get('dishes'))->delete();
+
         return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
     }
 
@@ -163,6 +147,7 @@ class DishController extends Controller
     {
         $view = view('dish.multi-edit');
         $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
+
         return $view;
     }
 
@@ -192,6 +177,7 @@ class DishController extends Controller
                 'price' => $dish['price'] / $honderd * $negen + $dish['price'],
             ]);
         }
+
         return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');
     }
 }

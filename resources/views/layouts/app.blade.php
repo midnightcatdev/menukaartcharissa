@@ -74,10 +74,8 @@
                         @endif
                     @else
                         <li class="nav-item">
+
                             <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
@@ -87,6 +85,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>

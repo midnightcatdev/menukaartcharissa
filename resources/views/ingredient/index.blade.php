@@ -20,18 +20,24 @@
                     <div class="me-1">
                         <a href="{{ route('ingredient.show', $ingredient) }}" class="btn btn-secondary" type="edit">Meer
                             info</a>
-                        <a href="{{ route('ingredient.edit', $ingredient) }}" class="btn btn-success" type="edit">Bewerken</a>
+                        @can('update', $ingredient)
+                            <a href="{{ route('ingredient.edit', $ingredient) }}" class="btn btn-success" type="edit">Bewerken</a>
+                        @endcan
                     </div>
                     <div class="delete-button">
-                        {{ Form::open(['route' => ['ingredient.destroy', $ingredient], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                        @can('delete', $ingredient)
+                            {{ Form::open(['route' => ['ingredient.destroy', $ingredient], 'method' => 'delete']) }}
+                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </div>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('ingredient.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg ingredient toe</a>
+    @can('create', $ingredient)
+        <a href="{{ route('ingredient.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg ingredient toe</a>
+    @endcan
     <div> {{ $ingredients->links() }} </div>
 @endsection

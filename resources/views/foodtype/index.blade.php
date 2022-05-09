@@ -16,19 +16,25 @@
                     <div class="edit-button me-1">
                         <a href="{{ route('foodtype.show', $foodtype) }}" class="btn btn-secondary" type="edit">Meer
                             info</a>
-                        <a href="{{ route('foodtype.edit', $foodtype) }}" class="btn btn-success"
-                           type="edit">Bewerken</a>
+                        @can('update', $foodtype)
+                            <a href="{{ route('foodtype.edit', $foodtype) }}" class="btn btn-success"
+                               type="edit">Bewerken</a>
+                        @endcan
                     </div>
                     <div class="delete-button">
-                        {{ Form::open(['route' => ['foodtype.destroy', $foodtype], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                        @can('delete', $foodtype)
+                            {{ Form::open(['route' => ['foodtype.destroy', $foodtype], 'method' => 'delete']) }}
+                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </div>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('foodtype.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg type gerecht toe</a>
+    @can('create', $foodtype)
+        <a href="{{ route('foodtype.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg type gerecht toe</a>
+    @endcan
     <div> {{ $foodtypes->links() }} </div>
 @endsection

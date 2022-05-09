@@ -18,12 +18,16 @@
         </tr>
         </thead>
         <tbody>
-        <button class="btn btn-success m-1 p-2" type="submit" formaction="{{ route('dish.multi-edit') }}">edit
-        </button>
-        <button class="btn btn-danger m-1 p-2" type="submit" formaction="{{ route('dish.multi-select') }}">Verwijder
-            alle
-            geselecteerde
-        </button>
+        @can('update', $dishes)
+            <button class="btn btn-success m-1 p-2" type="submit" formaction="{{ route('dish.multi-edit') }}">edit
+            </button>
+        @endcan
+        @can('update', $dishes)
+            <button class="btn btn-danger m-1 p-2" type="submit" formaction="{{ route('dish.multi-select') }}">Verwijder
+                alle
+                geselecteerde
+            </button>
+        @endcan
 
         @foreach($dishes as $dish)
             <tr>
@@ -50,8 +54,10 @@
                         <a href="{{ route('dish.show', $dish) }}"
                            class="btn btn-secondary m-1 p-2"
                            type="edit">Details</a>
-                        <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success m-1 p-2 "
-                           type="edit">Bewerken</a>
+                        @can('update', $dish)
+                            <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success m-1 p-2 "
+                               type="edit">Bewerken</a>
+                        @endcan
                     </div>
                 </td>
             </tr>
@@ -59,8 +65,9 @@
         </tbody>
     </table>
     {{ Form::close() }}
-
-    <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2">Voeg toe</a>
+    @can('create', $dish)
+        <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2">Voeg toe</a>
+    @endcan
     <div class="pagination justify-content-end"> {{ $dishes->links() }} </div>
 @endsection
 

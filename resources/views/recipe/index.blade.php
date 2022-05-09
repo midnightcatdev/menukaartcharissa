@@ -27,17 +27,23 @@
                     <div class="d-flex">
                         <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary me-1" type="edit">Meer
                             info</a>
-                        <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success me-1"
-                           type="edit">Bewerken</a>
-                        {{ Form::open(['route' => ['recipe.destroy', $recipe], 'method' => 'delete']) }}
-                        {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                        @can('update', $recipe)
+                            <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success me-1"
+                               type="edit">Bewerken</a>
+                        @endcan
+                        @can('delete', $recipe)
+                            {{ Form::open(['route' => ['recipe.destroy', $recipe], 'method' => 'delete']) }}
+                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </div>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('recipe.create') }}" class="btn btn-success m-2">Voeg recept toe</a>
+    @can('create', $recipe)
+        <a href="{{ route('recipe.create') }}" class="btn btn-success m-2">Voeg recept toe</a>
+    @endcan
     <div> {{ $recipes->links() }} </div>
 @endsection

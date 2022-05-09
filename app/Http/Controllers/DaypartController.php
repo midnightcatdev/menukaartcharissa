@@ -7,7 +7,6 @@ use App\Models\Daypart;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 
 class DaypartController extends Controller
 {
@@ -30,8 +29,10 @@ class DaypartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Daypart $daypart)
     {
+        $this->authorize('create', $daypart);
+
         return view('daypart.create');
     }
 
@@ -100,6 +101,7 @@ class DaypartController extends Controller
      */
     public function update(DaypartStoreRequest $request, Daypart $daypart)
     {
+        $this->authorize('update', $daypart);
         $daypart->update($request->all());
 
         return redirect()->route('daypart.index')->with('success', 'Dagdeel gewijzigd');
@@ -111,7 +113,9 @@ class DaypartController extends Controller
      */
     public function destroy(Daypart $daypart)
     {
+        $this->authorize('destroy', $daypart);
         $daypart->delete();
+
         return redirect()->route('daypart.index')->with('success', 'Dagdeel verwijdert');
     }
 }

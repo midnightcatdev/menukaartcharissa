@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FoodtypeStoreRequest;
 use App\Models\Daypart;
 use App\Models\Foodtype;
-use Illuminate\Http\Request;
 
 class FoodtypeController extends Controller
 {
@@ -27,8 +26,9 @@ class FoodtypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Foodtype $foodtype)
     {
+        $this->authorize('create', $foodtype);
         $view = view('foodtype.create');
         $view->dayparts = Daypart::pluck('name', 'id');
 
@@ -58,7 +58,6 @@ class FoodtypeController extends Controller
     public function show(Foodtype $foodtype)
     {
         $view = view('foodtype.show');
-
         $view->foodtype = $foodtype;
 
         return $view;
@@ -73,9 +72,7 @@ class FoodtypeController extends Controller
     public function edit(Foodtype $foodtype)
     {
         $view = view('foodtype.edit');
-
         $view->dayparts = Daypart::pluck('name', 'id');
-
         $view->foodtype = $foodtype;
 
         return $view;
@@ -90,6 +87,7 @@ class FoodtypeController extends Controller
      */
     public function update(FoodtypeStoreRequest $request, Foodtype $foodtype)
     {
+        $this->authorize('update', $foodtype);
         $foodtype->update($request->all());
         $daypart = Daypart::find($request->get('id'));
         $foodtype->daypart()->associate($daypart);
@@ -105,7 +103,9 @@ class FoodtypeController extends Controller
      */
     public function destroy(Foodtype $foodtype)
     {
+        $this->authorize('delete', $foodtype);
         $foodtype->delete();
+
         return redirect()->route('foodtype.index')->with('success', 'Gerecht type verwijdert');
     }
 }

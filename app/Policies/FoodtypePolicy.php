@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Dish;
+use App\Models\Foodtype;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DishPolicy
+class FoodtypePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class DishPolicy
      * Determine whether the user can view the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Dish $dish
+     * @param \App\Models\Foodtype $foodtype
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Dish $dish)
+    public function view(User $user, Foodtype $foodtype)
     {
         //
     }
@@ -48,12 +48,11 @@ class DishPolicy
      * Determine whether the user can update the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Dish $dish
+     * @param \App\Models\Foodtype $foodtype
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Dish $dish)
+    public function update(User $user, Foodtype $foodtype)
     {
-//        dd($user->role_id == 1, $user->role_id, 1);
         return $user->role_id === 1;
     }
 
@@ -61,10 +60,10 @@ class DishPolicy
      * Determine whether the user can delete the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Dish $dish
+     * @param \App\Models\Foodtype $foodtype
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Dish $dish)
+    public function delete(User $user, Foodtype $foodtype)
     {
         return $user->role_id === 1;
     }
@@ -73,10 +72,10 @@ class DishPolicy
      * Determine whether the user can restore the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Dish $dish
+     * @param \App\Models\Foodtype $foodtype
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Dish $dish)
+    public function restore(User $user, Foodtype $foodtype)
     {
         //
     }
@@ -85,10 +84,10 @@ class DishPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Dish $dish
+     * @param \App\Models\Foodtype $foodtype
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Dish $dish)
+    public function forceDelete(User $user, Foodtype $foodtype)
     {
         //
     }

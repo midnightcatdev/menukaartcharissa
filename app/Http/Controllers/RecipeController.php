@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeStoreRequest;
-use App\Models\Daypart;
 use App\Models\Dish;
 use App\Models\Ingredient;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
@@ -30,8 +28,9 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Recipe $recipe)
     {
+        $this->authorize('create', $recipe);
         $view = view('recipe.create');
         $view->ingredients = Ingredient::pluck('name', 'id');
         $view->dishes = Dish::pluck('name', 'id');
@@ -63,7 +62,6 @@ class RecipeController extends Controller
     public function show(Recipe $recipe)
     {
         $view = view('recipe.show');
-
         $view->recipe = $recipe;
 
         return $view;
@@ -94,6 +92,7 @@ class RecipeController extends Controller
      */
     public function update(RecipeStoreRequest $request, Recipe $recipe)
     {
+        $this->authorize('update', $recipe);
         $recipe->ingredients()->sync($request->get('ingredients'));
         $recipe->dish()->associate(Dish::find($request->get('dish_id')))->save();
         $recipe->update($request->all());
@@ -109,7 +108,9 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        $this->authorize('delete', $recipe);
         $recipe->delete();
+
         return redirect()->route('recipe.index')->with('success', 'Recept verwijdert');
     }
 }
