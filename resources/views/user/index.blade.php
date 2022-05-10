@@ -6,6 +6,7 @@
         <tr>
             <th class="col-lg-2">Gebruikers naam</th>
             <th class="col-lg-2">Rol</th>
+            <th class="col-lg-2">Rol naam</th>
             <th class="col-lg-2"> Beheerfuncties</th>
         </tr>
         </thead>
@@ -17,8 +18,10 @@
             <tr>
                 <td>{{ $user->name }}</td>
                 <td>
-                    {{--                    {{ $user->roles->role ?? 'onbekend'}}--}}
                     {{ $user->role_id }}
+                </td>
+                <td>
+                    {{ $user->role->role ?? 'geen rol'}}
                 </td>
                 <td class="me-1">
                     <a href="{{ route('user.edit', $user) }}" class="btn btn-success"

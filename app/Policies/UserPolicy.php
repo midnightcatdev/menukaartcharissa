@@ -29,6 +29,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
+//        dd($user->role_id);
         return $user->role_id === 1;
     }
 
@@ -52,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return $user->role_id === 1;
     }
 
     /**

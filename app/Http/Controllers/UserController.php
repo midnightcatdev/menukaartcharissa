@@ -70,8 +70,7 @@ class UserController extends Controller
     {
         $view = view('user.edit');
         $view->user = $user;
-        $view->roles = Role::get();
-        $view->role = Role::pluck('role');
+        $view->roles = Role::pluck('role', 'id');
 
         return $view;
     }
@@ -86,6 +85,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
+        $role = Role::find($request->get('role_id'));
+        $user->role()->associate($role)->save();
+
         return redirect()->route('user.index');
 
     }

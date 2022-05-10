@@ -18,11 +18,11 @@
         </tr>
         </thead>
         <tbody>
-        @can('update', $dishes)
+        @can('update', $dishes->first())
             <button class="btn btn-success m-1 p-2" type="submit" formaction="{{ route('dish.multi-edit') }}">edit
             </button>
         @endcan
-        @can('update', $dishes)
+        @can('delete', $dishes->first())
             <button class="btn btn-danger m-1 p-2" type="submit" formaction="{{ route('dish.multi-select') }}">Verwijder
                 alle
                 geselecteerde
