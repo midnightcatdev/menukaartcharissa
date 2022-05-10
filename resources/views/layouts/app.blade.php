@@ -123,28 +123,32 @@
 
     <main class="p-2 m-2">
         <div class="container border rounded-3 p-3">
-            <div class="border rounded-3">
-                @if (session('success'))
-                    <div class="alert alert-success mt-3">
-                        {{ session('success') }}
-                    </div>
-                @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-                @if ($errors->any())
-                    <div class="alert alert-danger mt-1 pb-0">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @yield('content')
-            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger mt-1 pb-0">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @yield('content')
         </div>
     </main>
 </div>
 </body>
+
+{{--@if (session()->has('succes'))--}}
+{{--    <div>--}}
+{{--        <p> {{ session('succes') }} </p>--}}
+{{--    </div>--}}
+{{--@endif--}}
 
 <footer class="site-footer">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

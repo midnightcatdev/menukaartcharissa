@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -19,7 +20,6 @@ class UserController extends Controller
         $view = view('user.index');
         $view->users = User::get();
         $view->roles = Role::get();
-        $view->role = Role::pluck('role');
 
         return $view;
     }
@@ -29,9 +29,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('user.create');
+        $view = view('user.create');
+        $view->roles = Role::pluck('role', 'id');
+
+        return $view;
     }
 
     /**
@@ -42,11 +45,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name' => $request->get('name'),
+
+        $attributes = request()->validate([
+            'name' => ['required', 'max:255', Rule::unique('users', 'name')],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'min:6', 'max:255'],
         ]);
 
-        return redirect()->route('user.create');
+//        $attributes['password'] = bcrypt($attributes['password']);
+
+        $user = User::create($attributes);
+
+//        $user = User::create([
+//            'name' => $request->get('name'),
+//            'email' => $request->get('email'),
+//            'password' => $request->get('password'),
+//        ]);
+
+        $role = Role::find($request->get('role_id'));
+        $user->role()->associate($role)->save();
+
+//        session()->flash('succes', 'account created');
+
+        return redirect()->route('user.index')->with('success', 'Gebruiker is aangemaakt');
     }
 
     /**
@@ -88,7 +109,7 @@ class UserController extends Controller
         $role = Role::find($request->get('role_id'));
         $user->role()->associate($role)->save();
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Gebruiker is aangepast');
 
     }
 

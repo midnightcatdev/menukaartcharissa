@@ -52,29 +52,6 @@ class RegisterController extends Controller
 //    public function register(Request $request)
 //    {
 //
-//        $this->validator($request->all())->validate();
-//
-//        $user = $this->create($request->all());
-//
-//        event(new Registered($user));
-//
-//        $this->guard()->login($user);
-//
-//        return redirect($this->redirectPath());
-//
-////        return redirect('/contact')->with('success', "Account successfully registered.");
-//
-////        return redirect('/password/confirm')->with('success', "Account successfully registered.");
-//
-//
-////        Route::get('/email/verify', function () {
-////            return view('auth.verify-email');
-////        })->middleware('auth')->name('verification.notice');
-//
-////        return view('auth.verify-email');
-//
-////    })->middleware('auth')->name('verification.notice');
-//
 //    }
 //
     /**
