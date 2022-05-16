@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FoodtypeStoreRequest;
 use App\Models\Daypart;
 use App\Models\Foodtype;
+use App\Models\Restaurant;
 
 class FoodtypeController extends Controller
 {
@@ -13,9 +14,12 @@ class FoodtypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($restaurant)
     {
+//        dd($restaurant);
+
         $view = view('foodtype.index');
+        Restaurant::where('name', $restaurant)->firstOrFail();
         $view->foodtypes = Foodtype::paginate(8);
 
         return $view;

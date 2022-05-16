@@ -36,4 +36,11 @@ class Dish extends Model
         return $this->hasMany(Recipe::class);
     }
 
+    /**
+     * Get the restaurant that owns the dish.
+     */
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }

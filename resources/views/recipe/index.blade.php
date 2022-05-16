@@ -25,14 +25,16 @@
                 <td> {{ $recipe->dish->name ?? 'none' }} </td>
                 <td>
                     <div class="d-flex">
-                        <a href="{{ route('recipe.show', $recipe) }}" class="btn btn-secondary me-1" type="edit">Meer
+                        <a href="{{ route('recipe.show', [request()->restaurant, $recipe]) }}"
+                           class="btn btn-secondary me-1" type="edit">Meer
                             info</a>
                         @can('update', $recipe)
-                            <a href="{{ route('recipe.edit', $recipe) }}" class="btn btn-success me-1"
+                            <a href="{{ route('recipe.edit',[request()->restaurant,$recipe] ) }}"
+                               class="btn btn-success me-1"
                                type="edit">Bewerken</a>
                         @endcan
                         @can('delete', $recipe)
-                            {{ Form::open(['route' => ['recipe.destroy', $recipe], 'method' => 'delete']) }}
+                            {{ Form::open(['route' => ['recipe.destroy',request()->restaurant,$recipe], 'method' => 'delete']) }}
                             {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
@@ -43,7 +45,7 @@
         </tbody>
     </table>
     @can('create', $recipe)
-        <a href="{{ route('recipe.create') }}" class="btn btn-success m-2">Voeg recept toe</a>
+        <a href="{{ route('recipe.create', request()->restaurant) }}" class="btn btn-success m-2">Voeg recept toe</a>
     @endcan
     <div> {{ $recipes->links() }} </div>
 @endsection

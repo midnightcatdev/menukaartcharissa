@@ -7,6 +7,7 @@ use App\Models\Daypart;
 use App\Models\Dish;
 use App\Models\Foodtype;
 use App\Models\Recipe;
+use App\Models\Restaurant;
 
 class DaypartController extends Controller
 {
@@ -16,8 +17,9 @@ class DaypartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index($restaurant)
     {
+//        dd($restaurant);
         $view = view('daypart.index');
         $view->dayparts = Daypart::get();
 
@@ -60,14 +62,15 @@ class DaypartController extends Controller
     public function show(Daypart $daypart)
     {
         $view = view('daypart.show');
-
         $view->daypart = $daypart;
 
         return $view;
     }
 
-    public function menu()
+    public function menu($restaurant)
     {
+        Restaurant::where('name', $restaurant)->firstOrFail();
+
         $view = view('daypart.menukaart');
         $view->dayparts = Daypart::get();
         $view->recipes = Recipe::get();

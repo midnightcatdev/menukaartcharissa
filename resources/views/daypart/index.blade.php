@@ -22,14 +22,17 @@
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a href="{{ route('daypart.show', $daypart) }}" class="btn btn-secondary me-1" type="edit">Meer
+                        <a href="{{ route('daypart.show',[request()->restaurant, $daypart]) }}"
+                           class="btn btn-secondary me-1" type="edit">Meer
+                            {{--                            href="{{ route('daypart.index',[request()->restaurant]) }}">{{ __('Dagdelen') }}</a>--}}
                             info</a>
                         @can('update', $daypart)
-                            <a href="{{ route('daypart.edit', $daypart) }}" class="btn btn-success me-1"
+                            <a href="{{ route('daypart.edit',[request()->restaurant, $daypart]) }}"
+                               class="btn btn-success me-1"
                                type="edit">Bewerken</a>
                         @endcan
                         @can('delete', $daypart)
-                            {{ Form::open(['route' => ['daypart.destroy', $daypart], 'method' => 'delete']) }}
+                            {{ Form::open(['route' => ['daypart.destroy',request()->restaurant,$daypart], 'method' => 'delete']) }}
                             {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
@@ -40,6 +43,7 @@
         </tbody>
     </table>
     @can('create', $daypart)
-        <a href="{{ route('daypart.create') }}" class="btn btn-success p-2 m-1" type="edit">Nieuw dagdeel</a>
+        <a href="{{ route('daypart.create', request()->restaurant) }}" class="btn btn-success p-2 m-1" type="edit">Nieuw
+            dagdeel</a>
     @endcan
 @endsection

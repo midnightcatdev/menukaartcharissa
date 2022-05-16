@@ -3,6 +3,10 @@
     <div class="container">
         <div class="card-body">
             <div class="row">
+
+                {{ dd($dish->restaurant_name) }}
+                {{ dd($dish->restaurant_id) }}
+
                 <h1 class="card-title">{{ $dish->name }}</h1>
                 <div class="col-4">
                     {{ $dish->photo_name }}

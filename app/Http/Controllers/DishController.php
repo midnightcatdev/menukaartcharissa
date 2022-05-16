@@ -69,7 +69,9 @@ class DishController extends Controller
     public function show(Dish $dish)
     {
         $view = view('dish.show');
-        $view->dish = Dish::with('recipes', 'recipes.ingredients')->find($dish->id);
+        $view->dish = Dish::with('recipes', 'recipes.ingredients', 'restaurant')->find($dish->id);
+//        dd($dish);
+//        $view->dish = Dish::with('restaurant')->find($dish->name);
 
         return $view;
     }

@@ -24,13 +24,14 @@
                     {{ $user->role->role ?? 'geen rol'}}
                 </td>
                 <td class="me-1">
-                    <a href="{{ route('user.edit', $user) }}" class="btn btn-success"
+                    <a href="{{ route('user.edit',[request()->restaurant, $user]) }}" class="btn btn-success"
                        type="edit">Bewerken</a>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('user.create') }}" class="btn btn-success mt-0 m-2"> Nieuwe gebruiker </a>
+    <a href="{{ route('user.create',[request()->restaurant, $user]) }}" class="btn btn-success mt-0 m-2"> Nieuwe
+        gebruiker </a>
     {{--    <div> {{ $user->links() }} </div>--}}
 @endsection

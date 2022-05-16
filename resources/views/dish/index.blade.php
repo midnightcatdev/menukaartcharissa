@@ -19,7 +19,8 @@
         </thead>
         <tbody>
         @can('update', $dishes->first())
-            <button class="btn btn-success m-1 p-2" type="submit" formaction="{{ route('dish.multi-edit') }}">edit
+            <button class="btn btn-success m-1 p-2" type="submit"
+                    formaction="{{ route('dish.multi-edit',[request()->restaurant]) }}">edit
             </button>
         @endcan
         @can('delete', $dishes->first())
@@ -28,6 +29,8 @@
                 geselecteerde
             </button>
         @endcan
+
+        {{ dd($restaurant) }}
 
         @foreach($dishes as $dish)
             <tr>
@@ -66,7 +69,7 @@
     </table>
     {{ Form::close() }}
     @can('create', $dish)
-        <a href="{{ route('dish.create') }}" class="btn btn-success m-1 p-2">Voeg toe</a>
+        <a href="{{ route('dish.create',[request()->restaurant, $dish]) }}" class="btn btn-success m-1 p-2">Voeg toe</a>
     @endcan
     <div class="pagination justify-content-end"> {{ $dishes->links() }} </div>
 @endsection

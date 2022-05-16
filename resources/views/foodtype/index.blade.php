@@ -14,16 +14,18 @@
                 <td>{{ $foodtype->name }}</td>
                 <td class="d-flex">
                     <div class="edit-button me-1">
-                        <a href="{{ route('foodtype.show', $foodtype) }}" class="btn btn-secondary" type="edit">Meer
+                        <a href="{{ route('foodtype.show',[request()->restaurant, $foodtype]) }}"
+                           class="btn btn-secondary" type="edit">Meer
                             info</a>
                         @can('update', $foodtype)
-                            <a href="{{ route('foodtype.edit', $foodtype) }}" class="btn btn-success"
+                            <a href="{{ route('foodtype.edit',[request()->restaurant, $foodtype]) }}"
+                               class="btn btn-success"
                                type="edit">Bewerken</a>
                         @endcan
                     </div>
                     <div class="delete-button">
                         @can('delete', $foodtype)
-                            {{ Form::open(['route' => ['foodtype.destroy', $foodtype], 'method' => 'delete']) }}
+                            {{ Form::open(['route' => ['foodtype.destroy', request()->restaurant, $foodtype], 'method' => 'delete']) }}
                             {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
@@ -34,7 +36,8 @@
         </tbody>
     </table>
     @can('create', $foodtype)
-        <a href="{{ route('foodtype.create') }}" class="btn btn-success mt-0 m-2" type="edit">Voeg type gerecht toe</a>
+        <a href="{{ route('foodtype.create',[request()->restaurant, $foodtype]) }}" class="btn btn-success mt-0 m-2"
+           type="edit">Voeg type gerecht toe</a>
     @endcan
     <div> {{ $foodtypes->links() }} </div>
 @endsection
