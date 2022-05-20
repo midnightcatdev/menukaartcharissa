@@ -40,7 +40,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                Welkom bij {{$restaurant->name??''}}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -60,17 +60,19 @@
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" target="_blank"
-                               href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                               href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                         </li>
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link"
+                                   href="{{ route('login',[request()->restaurant]) }}">{{ __('Login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link"
+                                   href="{{ route('register',[request()->restaurant]) }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
@@ -111,13 +113,15 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item" href="{{ route('logout',[request()->restaurant]) }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout',[request()->restaurant]) }}"
+                                      method="POST"
+                                      class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -145,35 +149,32 @@
                     </ul>
                 </div>
             @endif
-            @yield('content')
+
+            @yield('content').
+
         </div>
     </main>
 </div>
 </body>
 
-{{--@if (session()->has('succes'))--}}
-{{--    <div>--}}
-{{--        <p> {{ session('succes') }} </p>--}}
-{{--    </div>--}}
-{{--@endif--}}
-
 <footer class="site-footer">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">
         <ul class="navbar-nav ms-auto">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                    <a class="nav-link" target="_blank"
+                       href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                 </li>
                 @if (Route::has('login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login',[request()->restaurant]) }}">{{ __('Login') }}</a>
                     </li>
                 @endif
 
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register', $restaurant) }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else

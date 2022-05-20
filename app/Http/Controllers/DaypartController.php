@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DaypartStoreRequest;
 use App\Models\Daypart;
-use App\Models\Dish;
-use App\Models\Foodtype;
-use App\Models\Recipe;
 use App\Models\Restaurant;
 
 class DaypartController extends Controller
@@ -17,8 +14,9 @@ class DaypartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index($restaurant)
+    public function index(Restaurant $restaurant)
     {
+
 //        dd($restaurant);
         $view = view('daypart.index');
         $view->dayparts = Daypart::get();
@@ -59,8 +57,9 @@ class DaypartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Daypart $daypart)
+    public function show($restaurant, Daypart $daypart)
     {
+//        dd($daypart);
         $view = view('daypart.show');
         $view->daypart = $daypart;
 
@@ -69,13 +68,15 @@ class DaypartController extends Controller
 
     public function menu($restaurant)
     {
-        Restaurant::where('name', $restaurant)->firstOrFail();
+
+        //  dd('menu', Restaurant::getCurrentRestaurant()->dishes);
+        // Restaurant::where('name', $restaurant)->firstOrFail();
 
         $view = view('daypart.menukaart');
-        $view->dayparts = Daypart::get();
-        $view->recipes = Recipe::get();
-        $view->dishes = Dish::get();
-        $view->foodtypes = Foodtype::get();
+        $view->dayparts = Restaurant::getCurrentRestaurant()->dayparts;
+        //    $view->recipes = Recipe::get();
+        //    $view->dishes = Restaurant::getCurrentRestaurant()->dishes;
+        //    $view->foodtypes = Foodtype::get();
 
         return $view;
     }
@@ -89,7 +90,6 @@ class DaypartController extends Controller
     public function edit(Daypart $daypart)
     {
         $view = view('daypart.edit');
-
         $view->daypart = $daypart;
 
         return $view;

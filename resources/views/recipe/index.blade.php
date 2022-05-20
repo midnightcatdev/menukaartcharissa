@@ -8,7 +8,7 @@
             <th class="col-lg-3">Bereidingswijze</th>
             <th class="col-lg-2">Ingredienten</th>
             <th class="col-lg-2">Gerecht</th>
-            <th class="col-lg-3">Beheer functies</th>
+            <th class="col-lg-3">Beheer</th>
         </tr>
         </thead>
         <tbody>
@@ -26,16 +26,15 @@
                 <td>
                     <div class="d-flex">
                         <a href="{{ route('recipe.show', [request()->restaurant, $recipe]) }}"
-                           class="btn btn-secondary me-1" type="edit">Meer
-                            info</a>
+                           class="btn btn-secondary me-1" type="edit">Info</a>
                         @can('update', $recipe)
                             <a href="{{ route('recipe.edit',[request()->restaurant,$recipe] ) }}"
                                class="btn btn-success me-1"
-                               type="edit">Bewerken</a>
+                               type="edit">Bewerk</a>
                         @endcan
                         @can('delete', $recipe)
                             {{ Form::open(['route' => ['recipe.destroy',request()->restaurant,$recipe], 'method' => 'delete']) }}
-                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::submit('Verwijder',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
                     </div>

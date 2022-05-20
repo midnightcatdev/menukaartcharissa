@@ -4,7 +4,7 @@
     <div class="container p-3 d-flex">
         <div class="col-6 p-3 border rounded">
             <h3> Stuur een vraag </h3>
-            {{ Form::open(['route' => ['contact.store']]) }}
+            {{ Form::open(['route' => ['contact.store', [request()->restaurant]]]) }}
             {{ Form::label('name', 'Naam:', ['class' => 'form-label'] ) }}
             {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Naam', )) }}
             {{ Form::label('email', 'Email:', ['class' => 'form-label'] ) }}
@@ -25,7 +25,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="container">
         <div class="col-12 mb-3" id="map"></div>
     </div>

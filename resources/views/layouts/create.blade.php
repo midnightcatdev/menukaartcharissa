@@ -23,37 +23,42 @@
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" target="_blank"
-                               href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                               href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                         </li>
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link"
+                                   href="{{ route('login', [request()->restaurant]) }}">{{ __('Login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register', $restaurant) }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('daypart.index', $restaurant) }}">{{ __('Dagdelen') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
+                            <a class="nav-link" href="{{ route('dish.index', $restaurant) }}">{{ __('Gerechten') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('foodtype.index', $restaurant) }}">{{ __('Gerecht type') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('ingredient.index', $restaurant) }}">{{ __('Ingredienten') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                            <a class="nav-link" href="{{ route('recipe.index', $restaurant) }}">{{ __('Recepten') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -69,7 +74,8 @@
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout', $restaurant) }}" method="POST"
+                                      class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -111,37 +117,45 @@
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                    <a class="nav-link" target="_blank"
+                       href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                 </li>
                 @if (Route::has('login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login', [request()->restaurant]) }}">{{ __('Login') }}</a>
                     </li>
                 @endif
 
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link"
+                           href="{{ route('register', [request()->restaurant]) }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('daypart.index') }}">{{ __('Dagdelen') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('daypart.index', [request()->restaurant]) }}">{{ __('Dagdelen') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dish.index') }}">{{ __('Gerechten') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('dish.index', [request()->restaurant]) }}">{{ __('Gerechten') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('foodtype.index') }}">{{ __('Gerecht type') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('foodtype.index', [request()->restaurant]) }}">{{ __('Gerecht type') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('ingredient.index') }}">{{ __('Ingredienten') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('ingredient.index', [request()->restaurant]) }}">{{ __('Ingredienten') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('recipe.index') }}">{{ __('Recepten') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('recipe.index', [request()->restaurant]) }}">{{ __('Recepten') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
+                    <a class="nav-link"
+                       href="{{ route('contact.index', [request()->restaurant]) }}">{{ __('Contact') }}</a>
                 </li>
             @endguest
         </ul>

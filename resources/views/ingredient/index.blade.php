@@ -4,10 +4,10 @@
     <table class="table table-hover table-striped">
         <thead>
         <tr>
-            <th class="col-lg-2">Ingredient</th>
-            <th class="col-lg-2">Meet eenheid</th>
-            <th class="col-lg-5">Waarde</th>
-            <th class="col-lg-3">Beheer functies</th>
+            <th class="col">Ingredient</th>
+            <th class="col">Meet eenheid</th>
+            <th class="col">Waarde</th>
+            <th class="col">Beheer</th>
         </tr>
         </thead>
         <tbody>
@@ -19,17 +19,16 @@
                 <td class="d-flex">
                     <div class="me-1">
                         <a href="{{ route('ingredient.show',[request()->restaurant, $ingredient]) }}"
-                           class="btn btn-secondary" type="edit">Meer
-                            info</a>
+                           class="btn btn-secondary" type="edit">Info</a>
                         @can('update', $ingredient)
                             <a href="{{ route('ingredient.edit',[request()->restaurant, $ingredient]) }}"
-                               class="btn btn-success" type="edit">Bewerken</a>
+                               class="btn btn-success" type="edit">bewerk</a>
                         @endcan
                     </div>
                     <div class="delete-button">
                         @can('delete', $ingredient)
                             {{ Form::open(['route' => ['ingredient.destroy', request()->restaurant, $ingredient], 'method' => 'delete']) }}
-                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::submit('Verwijder',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
                     </div>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-    <table class="table table-hover table-striped table-responsive">
+    <table class="table table-hover table-striped">
         <thead>
         <tr>
-            <th class="col-lg-2">Dagdelen lijst</th>
-            <th class="col-lg-7">Type gerecht</th>
-            <th class="col-lg-3">Beheer functies</th>
+            <th class="col">Dagdelen lijst</th>
+            <th class="col">Type gerecht</th>
+            <th class="col">Beheer</th>
         </tr>
         </thead>
         <tbody>
@@ -23,17 +23,15 @@
                 <td>
                     <div class="d-flex">
                         <a href="{{ route('daypart.show',[request()->restaurant, $daypart]) }}"
-                           class="btn btn-secondary me-1" type="edit">Meer
-                            {{--                            href="{{ route('daypart.index',[request()->restaurant]) }}">{{ __('Dagdelen') }}</a>--}}
-                            info</a>
+                           class="btn btn-secondary me-1" type="edit">Info</a>
                         @can('update', $daypart)
                             <a href="{{ route('daypart.edit',[request()->restaurant, $daypart]) }}"
                                class="btn btn-success me-1"
-                               type="edit">Bewerken</a>
+                               type="edit">Bewerk</a>
                         @endcan
                         @can('delete', $daypart)
                             {{ Form::open(['route' => ['daypart.destroy',request()->restaurant,$daypart], 'method' => 'delete']) }}
-                            {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
+                            {{ Form::submit('Verwijder',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
                     </div>

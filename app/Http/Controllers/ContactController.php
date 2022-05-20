@@ -15,7 +15,12 @@ class ContactController extends Controller
      */
     public function index()
     {
+//        dd(Restaurant::getCurrentRestaurant());
+        //   dd('sdf', Restaurant::getCurrentRestaurant());
+//        dd($restaurant);
         $view = view('contact.index');
+//        Restaurant::where('name', $restaurant)->firstOrFail();
+
         return $view;
     }
 
@@ -37,6 +42,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $name = $request->input('name');
         $email = $request->input('email');
         $question = $request->input('question');

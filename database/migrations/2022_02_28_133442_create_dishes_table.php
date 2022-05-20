@@ -14,7 +14,6 @@ return new class extends Migration {
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
-            $table->string('restaurant_name');
             $table->integer('restaurant_id');
             $table->integer('foodtype_id');
             $table->string('name');
