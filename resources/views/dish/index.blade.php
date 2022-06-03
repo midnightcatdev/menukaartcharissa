@@ -3,7 +3,7 @@
 @section('content')
 
     <table class="table table-hover table-striped">
-        {{ Form::open(['route' => ['dish.multi-edit'], 'enctype' => 'multipart/form-data', 'method' => 'get']) }}
+        {{ Form::open(['route' => ['dish.multi-edit', $restaurant], 'enctype' => 'multipart/form-data', 'method' => 'get']) }}
         <thead>
         <tr>
             <th>Select</th>
@@ -24,13 +24,12 @@
             </button>
         @endcan
         @can('delete', $dishes->first())
-            <button class="btn btn-danger m-1 p-2" type="submit" formaction="{{ route('dish.multi-select') }}">Verwijder
+            <button class="btn btn-danger m-1 p-2" type="submit"
+                    formaction="{{ route('dish.multi-select', [request()->restaurant]) }}">Verwijder
                 alle
                 geselecteerde
             </button>
         @endcan
-
-        {{ dd($restaurant) }}
 
         @foreach($dishes as $dish)
             <tr>
@@ -54,11 +53,12 @@
                          class="text-center w-50"></td>
                 <td>
                     <div class="d-flex">
-                        <a href="{{ route('dish.show', $dish) }}"
+                        <a href="{{ route('dish.show',[request()->restaurant, $dish]) }}"
                            class="btn btn-secondary m-1 p-2"
                            type="edit">Details</a>
                         @can('update', $dish)
-                            <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success m-1 p-2 "
+                            <a href="{{ route('dish.edit',[request()->restaurant, $dish]) }}"
+                               class="btn btn-success m-1 p-2 "
                                type="edit">Bewerken</a>
                         @endcan
                     </div>

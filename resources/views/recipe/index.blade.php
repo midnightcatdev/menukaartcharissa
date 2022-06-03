@@ -44,7 +44,8 @@
         </tbody>
     </table>
     @can('create', $recipe)
-        <a href="{{ route('recipe.create', request()->restaurant) }}" class="btn btn-success m-2">Voeg recept toe</a>
+        <a href="{{ route('recipe.create', request()->restaurant) }}" class="btn btn-success m-2">Voeg recept
+            toe</a>
     @endcan
     <div> {{ $recipes->links() }} </div>
 @endsection

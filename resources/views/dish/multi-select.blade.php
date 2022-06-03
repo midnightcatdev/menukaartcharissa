@@ -3,7 +3,7 @@
 
     <div class="form-control">
         <h2> De volgende gerechten verwijderen? </h2>
-        {{ Form::open(['route' => ['dish.multi-select-destroy'], 'enctype' => 'multipart/form-data', 'method' => 'delete']) }}
+        {{ Form::open(['route' => ['dish.multi-select-destroy', $restaurant->name], 'enctype' => 'multipart/form-data', 'method' => 'delete']) }}
         <ul>
             @foreach($dishes as $dish)
                 {{ $dish->name }}
@@ -11,7 +11,7 @@
             @endforeach
         </ul>
         {{ Form::submit('Ja verwijder', ['class' => 'btn btn-danger m-1 p-2']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary m-1 p-2">Nee ga terug</a>
+        <a href="{{ route('dish.index', $restaurant->name) }}" class="btn btn-secondary m-1 p-2">Nee ga terug</a>
     {{ Form::close() }}
-    
+
 @endsection

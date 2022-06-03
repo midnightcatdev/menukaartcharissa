@@ -4,13 +4,13 @@
 
     <div class="create-form form-control">
         <h2>Nieuw gerecht type</h2>
-        {{ Form::open(['route' => ['foodtype.store']]) }}
+        {{ Form::open(['route' => ['foodtype.store', $restaurant->name]]) }}
         {{ Form::label('name', 'Voer type gerecht in') }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('daypart_id', 'Selecteer dagdeel') }}
         {{ Form::select('daypart_id', $dayparts, null, ['class' => 'form-control']) }}
         {{ Form::submit('Indienen',['class' => 'btn btn-success mt-3']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
+        <a href="{{ route('dish.index', $restaurant) }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 
@@ -23,5 +23,5 @@
             </ul>
         </div>
     @endif
-    
+
 @endsection

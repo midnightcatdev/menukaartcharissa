@@ -38,7 +38,7 @@
         </tbody>
     </table>
     @can('create', $ingredient)
-        <a href="{{ route('ingredient.create',[request()->restaurant, $ingredient]) }}" class="btn btn-success mt-0 m-2"
+        <a href="{{ route('ingredient.create', $restaurant->name) }}" class="btn btn-success mt-0 m-2"
            type="edit">Voeg ingredient toe</a>
     @endcan
     <div> {{ $ingredients->links() }} </div>

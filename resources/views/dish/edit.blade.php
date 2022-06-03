@@ -3,8 +3,13 @@
 @section('content')
 
     <div class="form-control">
+
         <h2>Bewerk gerecht</h2>
-        {{ Form::model($dish,['route' => ['dish.update', $dish], 'enctype' => 'multipart/form-data', 'method' => 'put']) }}
+        {{--        {{ dd('scwer') }}--}}
+        {{--        {{ Form::model($dish, array('route' => array('dish.update', 'restaurant' => $restaurant->name, 'recipe' => $dish) , 'method' => 'put' )) }}--}}
+
+        {{ Form::model($dish, ['route' => ['dish.update', 'restaurant' => $restaurant->name, 'dish' => $dish], 'method' => 'put' ]) }}
+
         {{ Form::label('name', 'Naam', ['class' => 'form-label'] ) }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('description', 'Omschrijving', ['class' => 'form-label'] ) }}
@@ -25,7 +30,7 @@
         {{ Form::label('photo_name', 'Upload foto', ['class' => 'form-label'] ) }}
         {{ Form::file('photo_name', ['class' => 'form-control'] ) }}
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
+        <a href="{{ route('dish.index', $restaurant->name) }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 

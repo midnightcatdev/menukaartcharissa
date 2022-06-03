@@ -16,13 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 // this is a domain route with parameters
-Route::domain('{restaurant}.' . env('APP_URL'))->middleware('restaurant')->group(function ($restaurant) {
-
+Route::domain('{restaurant}.' . env('APP_URL'))->middleware('restaurant')->group(function () {
 
     Route::get('/', [App\Http\Controllers\DaypartController::class, 'menu'])->name('menukaart');
     Route::resource('contact', \App\Http\Controllers\ContactController::class);
+
     Auth::routes(['verify' => true]);
-    Route::middleware(['auth', 'verified'])->group(function ($restaurant) {
+
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('daypart', \App\Http\Controllers\DaypartController::class);
         Route::resource('foodtype', \App\Http\Controllers\FoodtypeController::class);
 

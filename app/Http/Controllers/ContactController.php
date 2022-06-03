@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -40,7 +41,7 @@ class ContactController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($restaurant, Request $request)
     {
 
 
@@ -52,7 +53,7 @@ class ContactController extends Controller
             $request->email => $request->name,
         ])->notify(new InvoicePaid());
 
-        return redirect()->route('contact.index')->with('success', 'Uw vraag is verzonden');
+        return redirect()->route('contact.index', $restaurant)->with('success', 'Uw vraag is verzonden');
     }
 
     /**
@@ -72,9 +73,11 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($restaurant, Contact $contact)
     {
-        //
+        $view = view('contact.edit');
+
+        return $view;
     }
 
     /**

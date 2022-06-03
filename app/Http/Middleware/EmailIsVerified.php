@@ -16,7 +16,8 @@ class EmailIsVerified
 
     public function handle($request, Closure $next)
     {
-
+        dd('sdfdsfs'
+        );
 //        if (email_is_verfied = null) {
 
 //        return redirect()->route('verification.notice');

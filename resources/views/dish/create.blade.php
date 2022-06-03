@@ -4,7 +4,11 @@
 
     <div class="form-control">
         <h2>Nieuw gerecht</h2>
-        {{ Form::open(array('route' => 'dish.store', 'enctype' => 'multipart/form-data')) }}
+        {{--        {{ Form::open(array('route' => 'dish.store', $restaurant , 'enctype' => 'multipart/form-data')) }}--}}
+
+        {{ Form::open(['route' => ['dish.store', $restaurant->name]]) }}
+
+
         {{ Form::label('name', 'Voer gerecht naam in:', ['class' => 'form-label'] ) }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('description', 'Omschrijving:', ['class' => 'form-label'] ) }}
@@ -27,7 +31,7 @@
         {{ Form::label('photo_name', 'Upload foto:', ['class' => 'form-label'] ) }}
         {{ Form::file('photo_name', ['class' => 'form-control'] ) }}
         {{ Form::submit('Indienen!',['class' => 'btn btn-success mt-3']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
+        <a href="{{ route('dish.index', $restaurant->name) }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 

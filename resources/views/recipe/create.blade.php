@@ -4,7 +4,7 @@
 
     <div class="form-control">
         <h2>Nieuw recept</h2>
-        {{ Form::open(['route' => ['recipe.store']]) }}
+        {{ Form::open(['route' => ['recipe.store', $restaurant->name]]) }}
         {{ Form::label('name', 'Naam recept') }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}
         {{ Form::label('steps', 'Bereidingswijze') }}
@@ -17,7 +17,7 @@
             </div>
         @endforeach
         {{ Form::submit('Indienen!',['class' => 'btn btn-success mt-3']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
+        <a href="{{ route('dish.index', $restaurant->name) }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 

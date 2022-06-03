@@ -31,7 +31,7 @@ class FoodtypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Foodtype $foodtype)
+    public function create($restaurant, Foodtype $foodtype)
     {
         $this->authorize('create', $foodtype);
         $view = view('foodtype.create');
@@ -46,12 +46,12 @@ class FoodtypeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FoodtypeStoreRequest $request)
+    public function store($restaurant, FoodtypeStoreRequest $request)
     {
         $foodtype = Foodtype::create($request->all());
         $foodtype->daypart()->associate(Daypart::find($request->get('daypart_id')))->save();
 
-        return redirect()->route('foodtype.index')->with('success', 'Gerecht type aangemaakt');
+        return redirect()->route('foodtype.index', $restaurant)->with('success', 'Gerecht type aangemaakt');
     }
 
     /**
@@ -60,7 +60,7 @@ class FoodtypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Foodtype $foodtype)
+    public function show($restaurant, Foodtype $foodtype)
     {
         $view = view('foodtype.show');
         $view->foodtype = $foodtype;
@@ -74,7 +74,7 @@ class FoodtypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Foodtype $foodtype)
+    public function edit($restaurant, Foodtype $foodtype)
     {
         $view = view('foodtype.edit');
         $view->dayparts = Daypart::pluck('name', 'id');
@@ -90,14 +90,14 @@ class FoodtypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FoodtypeStoreRequest $request, Foodtype $foodtype)
+    public function update($restaurant, FoodtypeStoreRequest $request, Foodtype $foodtype)
     {
         $this->authorize('update', $foodtype);
         $foodtype->update($request->all());
         $daypart = Daypart::find($request->get('id'));
         $foodtype->daypart()->associate($daypart);
 
-        return redirect()->route('foodtype.index')->with('success', 'Gerecht type gewijzigd');
+        return redirect()->route('foodtype.index', $restaurant)->with('success', 'Gerecht type gewijzigd');
     }
 
     /**
@@ -106,11 +106,11 @@ class FoodtypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Foodtype $foodtype)
+    public function destroy($restaurant, Foodtype $foodtype)
     {
         $this->authorize('delete', $foodtype);
         $foodtype->delete();
 
-        return redirect()->route('foodtype.index')->with('success', 'Gerecht type verwijdert');
+        return redirect()->route('foodtype.index', $restaurant)->with('success', 'Gerecht type verwijdert');
     }
 }

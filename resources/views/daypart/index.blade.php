@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+    {{--    {{ dd($restaurant->name) }}--}}
+
     <table class="table table-hover table-striped">
         <thead>
         <tr>
@@ -30,7 +32,7 @@
                                type="edit">Bewerk</a>
                         @endcan
                         @can('delete', $daypart)
-                            {{ Form::open(['route' => ['daypart.destroy',request()->restaurant,$daypart], 'method' => 'delete']) }}
+                            {{ Form::open(['route' => ['daypart.destroy',request()->restaurant, $daypart], 'method' => 'delete']) }}
                             {{ Form::submit('Verwijder',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan

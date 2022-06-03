@@ -12,7 +12,7 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($restaurant)
     {
         $view = view('ingredient.index');
 
@@ -26,7 +26,7 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Ingredient $ingredient)
+    public function create($restaurant, Ingredient $ingredient)
     {
         $this->authorize('create', $ingredient);
         $view = view('ingredient.create');
@@ -40,11 +40,11 @@ class IngredientController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(IngredientStoreRequest $request)
+    public function store($restaurant, IngredientStoreRequest $request)
     {
         $ingredient = Ingredient::create($request->all());
 
-        return redirect()->route('ingredient.index')->with('success', 'Ingredient is aangemaakt');
+        return redirect()->route('ingredient.index', $restaurant)->with('success', 'Ingredient is aangemaakt');
     }
 
     /**
@@ -53,7 +53,7 @@ class IngredientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingredient $ingredient)
+    public function show($restaurant, Ingredient $ingredient)
     {
         $view = view('ingredient.show');
         $view->ingredient = $ingredient;
@@ -67,7 +67,7 @@ class IngredientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ingredient $ingredient)
+    public function edit($restaurant, Ingredient $ingredient)
     {
         $view = view('ingredient.edit');
         $view->ingredient = $ingredient;
@@ -82,12 +82,12 @@ class IngredientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IngredientStoreRequest $request, Ingredient $ingredient)
+    public function update($restaurant, IngredientStoreRequest $request, Ingredient $ingredient)
     {
         $this->authorize('update', $ingredient);
         $ingredient->update($request->all());
 
-        return redirect()->route('ingredient.index')->with('success', 'Ingredient gewijzigd');
+        return redirect()->route('ingredient.index', $restaurant)->with('success', 'Ingredient gewijzigd');
     }
 
     /**
@@ -96,11 +96,11 @@ class IngredientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingredient $ingredient)
+    public function destroy($restaurant, Ingredient $ingredient)
     {
         $this->authorize('delete', $ingredient);
         $ingredient->delete();
 
-        return redirect()->route('ingredient.index')->with('success', 'Ingredient verwijdert');
+        return redirect()->route('ingredient.index', $restaurant)->with('success', 'Ingredient verwijdert');
     }
 }

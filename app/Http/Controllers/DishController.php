@@ -15,7 +15,7 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($restaurant)
     {
         $view = view('dish.index');
         $view->dishes = Dish::paginate(5);
@@ -28,7 +28,7 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Dish $dish)
+    public function create($restaurant, Dish $dish)
     {
         $this->authorize('create', $dish);
         $view = view('dish.create');
@@ -44,7 +44,7 @@ class DishController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DishStoreRequest $request)
+    public function store($restaurant, DishStoreRequest $request)
     {
         $dish = Dish::create($request->all());
         $foodtype = Foodtype::find($request->get('foodtype_id'));
@@ -57,7 +57,7 @@ class DishController extends Controller
         $dish->path = $path;
         $dish->save();
 
-        return redirect()->route('dish.index')->with('success', 'Gerecht is aangemaakt');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerecht is aangemaakt');
     }
 
     /**
@@ -66,12 +66,10 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show($restaurant, Dish $dish)
     {
         $view = view('dish.show');
         $view->dish = Dish::with('recipes', 'recipes.ingredients', 'restaurant')->find($dish->id);
-//        dd($dish);
-//        $view->dish = Dish::with('restaurant')->find($dish->name);
 
         return $view;
     }
@@ -82,7 +80,7 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit($restaurant, $dish)
     {
         $view = view('dish.edit');
         $view->foodtypes = Foodtype::pluck('name', 'id');
@@ -99,7 +97,7 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DishStoreRequest $request, Dish $dish)
+    public function update($restaurant, DishStoreRequest $request, Dish $dish)
     {
         $this->authorize('update', $dish);
         $dish->update($request->all());
@@ -113,7 +111,7 @@ class DishController extends Controller
         $dish->path = $path;
         $dish->save();
 
-        return redirect()->route('dish.index')->with('success', 'Gerecht gewijzigd');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerecht gewijzigd');
     }
 
     /**
@@ -122,12 +120,12 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dish)
+    public function destroy($restaurant, Dish $dish)
     {
         $this->authorize('destroy', $dish);
         $dish->delete();
 
-        return redirect()->route('dish.index')->with('success', 'Gerecht verwijdert');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerecht verwijdert');
     }
 
     public function selectItems(Request $request)
@@ -137,15 +135,15 @@ class DishController extends Controller
         return $view;
     }
 
-    public function multiSelectDestroy(Dish $dishes, Request $request)
+    public function multiSelectDestroy($restaurant, Dish $dishes, Request $request)
     {
         $this->authorize('update', $dishes);
         Dish::WhereIn('id', $request->get('dishes'))->delete();
 
-        return redirect()->route('dish.index')->with('success', 'Gerechten verwijdert');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerechten verwijdert');
     }
 
-    public function multiEdit(Request $request)
+    public function multiEdit($restaurant, Request $request)
     {
         $view = view('dish.multi-edit');
         $view->dishes = Dish::WhereIn('id', $request->get('dishes'))->get();
@@ -153,7 +151,7 @@ class DishController extends Controller
         return $view;
     }
 
-    public function multiUpdate(Request $request)
+    public function multiUpdate($restaurant, Request $request)
     {
         $input = $request->get('dishes');
 
@@ -163,10 +161,10 @@ class DishController extends Controller
                 'price' => $dish['price'],
             ]);
         }
-        return redirect()->route('dish.index')->with('success', 'Gerecht prijzen gewijzigd');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerecht prijzen gewijzigd');
     }
 
-    public function multiUpdateBtw(Request $request)
+    public function multiUpdateBtw($restaurant, Request $request)
     {
         $negen = 9;
         $honderd = 100;
@@ -180,6 +178,6 @@ class DishController extends Controller
             ]);
         }
 
-        return redirect()->route('dish.index')->with('success', 'Gerecht BTW toegevoegd');
+        return redirect()->route('dish.index', $restaurant)->with('success', 'Gerecht BTW toegevoegd');
     }
 }

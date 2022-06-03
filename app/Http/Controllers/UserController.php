@@ -43,7 +43,7 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($restaurant, Request $request)
     {
 
         $attributes = request()->validate([
@@ -52,22 +52,11 @@ class UserController extends Controller
             'password' => ['required', 'min:6', 'max:255'],
         ]);
 
-//        $attributes['password'] = bcrypt($attributes['password']);
-
         $user = User::create($attributes);
-
-//        $user = User::create([
-//            'name' => $request->get('name'),
-//            'email' => $request->get('email'),
-//            'password' => $request->get('password'),
-//        ]);
-
         $role = Role::find($request->get('role_id'));
         $user->role()->associate($role)->save();
 
-//        session()->flash('succes', 'account created');
-
-        return redirect()->route('user.index')->with('success', 'Gebruiker is aangemaakt');
+        return redirect()->route('user.index', $restaurant)->with('success', 'Gebruiker is aangemaakt');
     }
 
     /**
@@ -87,7 +76,7 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)
+    public function edit($restaurant, user $user)
     {
         $view = view('user.edit');
         $view->user = $user;
@@ -103,13 +92,13 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update($restaurant, Request $request, User $user)
     {
         $user->update($request->all());
         $role = Role::find($request->get('role_id'));
         $user->role()->associate($role)->save();
 
-        return redirect()->route('user.index')->with('success', 'Gebruiker is aangepast');
+        return redirect()->route('user.index', $restaurant)->with('success', 'Gebruiker is aangepast');
 
     }
 

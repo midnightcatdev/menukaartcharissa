@@ -3,7 +3,7 @@
 
     <div class="form-control">
         <h1>Create new user</h1>
-        {{ Form::open(['route' => ['user.store']]) }}
+        {{ Form::open(['route' => ['user.store', $restaurant->name]]) }}
         {{ Form::label('name', 'Enter Name', ['class' => 'form-label']) }}
         {{ Form::text('name',  null, ['class' => 'form-control']) }}
         {{ Form::label('email', 'Enter E-mail', ['class' => 'form-label']) }}

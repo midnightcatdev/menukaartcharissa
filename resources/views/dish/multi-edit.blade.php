@@ -3,7 +3,7 @@
 
     <div class="form-control">
         <h2> Edit these dishes? </h2>
-        {{ Form::model($dishes,['route' => ['dish.multi-update'], 'enctype' => 'multipart/form-data', 'method' => 'put']) }}
+        {{ Form::model($dishes,['route' => ['dish.multi-update', $restaurant->name], 'enctype' => 'multipart/form-data', 'method' => 'put']) }}
         @foreach($dishes as $dish)
             <h4>{{$dish->name}}</h4>
             {{ Form::label('dishes['.$dish->id.'][price]', 'Prijs', $dish->name, ['class' => 'form-label'] ) }}
@@ -17,7 +17,7 @@
                 met 9 procent
             </button>
             <button class="btn btn-success mt-3" type="submit">opslaan</button>
-            <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Ga terug</a>
+            <a href="{{ route('dish.index', $restaurant->name) }}" class="btn btn-secondary mt-3">Ga terug</a>
         </div>
         {{ Form::close() }}
     </div>

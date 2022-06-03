@@ -23,6 +23,12 @@
                 <li>Utrecht</li>
                 <li>Telefoon: 0666666</li>
             </ul>
+
+            {{ Form::open(['route' => ['contact.edit', $restaurant]]) }}
+            {{ Form::label('name', 'Naam:', ['class' => 'form-label'] ) }}
+            {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Naam', )) }}
+            {{ Form::close() }}
+
         </div>
     </div>
 

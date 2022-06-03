@@ -14,7 +14,7 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($restaurant)
     {
         $view = view('recipe.index');
         $view->ingredients = Ingredient::pluck('name', 'id');
@@ -28,7 +28,7 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Recipe $recipe)
+    public function create($restaurant, Recipe $recipe)
     {
         $this->authorize('create', $recipe);
         $view = view('recipe.create');
@@ -44,13 +44,13 @@ class RecipeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RecipeStoreRequest $request)
+    public function store($restaurant, RecipeStoreRequest $request)
     {
         $recipe = Recipe::create($request->all());
         $recipe->dish()->associate(Dish::find($request->get('dish_id')))->save();
         $recipe->ingredients()->sync($request->get('ingredients'));
 
-        return redirect()->route('recipe.index')->with('success', 'Recept is aangemaakt');
+        return redirect()->route('recipe.index', $restaurant)->with('success', 'Recept is aangemaakt');
     }
 
     /**
@@ -59,7 +59,7 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show($restaurant, Recipe $recipe)
     {
         $view = view('recipe.show');
         $view->recipe = $recipe;
@@ -73,7 +73,7 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recipe $recipe)
+    public function edit($restaurant, Recipe $recipe)
     {
         $view = view('recipe.edit');
         $view->ingredients = Ingredient::pluck('name', 'id');
@@ -90,14 +90,14 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RecipeStoreRequest $request, Recipe $recipe)
+    public function update($restaurant, RecipeStoreRequest $request, Recipe $recipe)
     {
         $this->authorize('update', $recipe);
         $recipe->ingredients()->sync($request->get('ingredients'));
         $recipe->dish()->associate(Dish::find($request->get('dish_id')))->save();
         $recipe->update($request->all());
 
-        return redirect()->route('recipe.index')->with('success', 'Recept gewijzigd');
+        return redirect()->route('recipe.index', $restaurant)->with('success', 'Recept gewijzigd');
     }
 
     /**
@@ -106,11 +106,11 @@ class RecipeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recipe $recipe)
+    public function destroy($restaurant, Recipe $recipe)
     {
         $this->authorize('delete', $recipe);
         $recipe->delete();
 
-        return redirect()->route('recipe.index')->with('success', 'Recept verwijdert');
+        return redirect()->route('recipe.index', $restaurant)->with('success', 'Recept verwijdert');
     }
 }

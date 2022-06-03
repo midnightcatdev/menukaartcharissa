@@ -18,5 +18,3 @@ class RestaurantMiddleware
         return $next($request);
     }
 }
-
-

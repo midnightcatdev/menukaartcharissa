@@ -14,12 +14,11 @@ class DaypartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Restaurant $restaurant)
+    public function index($restaurant)
     {
-
-//        dd($restaurant);
         $view = view('daypart.index');
-        $view->dayparts = Daypart::get();
+        $view->dayparts = Restaurant::getCurrentRestaurant()->dayparts;
+//        $view->dayparts = Daypart::get();
 
         return $view;
     }
@@ -29,7 +28,7 @@ class DaypartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Daypart $daypart)
+    public function create($restaurant, Daypart $daypart)
     {
         $this->authorize('create', $daypart);
 
@@ -42,13 +41,14 @@ class DaypartController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DaypartStoreRequest $request)
+    public function store($restaurant, DaypartStoreRequest $request)
     {
         Daypart::create([
             'name' => $request->get('name'),
         ]);
 
-        return redirect()->route('daypart.index')->with('success', 'Dagdeel is aangemaakt');
+        return redirect()->route('daypart.index', $restaurant)->with('success', 'Dagdeel is aangemaakt');
+
     }
 
     /**
@@ -59,7 +59,6 @@ class DaypartController extends Controller
      */
     public function show($restaurant, Daypart $daypart)
     {
-//        dd($daypart);
         $view = view('daypart.show');
         $view->daypart = $daypart;
 
@@ -87,7 +86,7 @@ class DaypartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Daypart $daypart)
+    public function edit($restaurant, Daypart $daypart)
     {
         $view = view('daypart.edit');
         $view->daypart = $daypart;
@@ -102,19 +101,19 @@ class DaypartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DaypartStoreRequest $request, Daypart $daypart)
+    public function update($restaurant, DaypartStoreRequest $request, Daypart $daypart)
     {
         $this->authorize('update', $daypart);
         $daypart->update($request->all());
 
-        return redirect()->route('daypart.index')->with('success', 'Dagdeel gewijzigd');
+        return redirect()->route('daypart.index', $restaurant)->with('success', 'Dagdeel gewijzigd');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      */
-    public function destroy(Daypart $daypart)
+    public function destroy($restaurant, Daypart $daypart)
     {
         $this->authorize('destroy', $daypart);
         $daypart->delete();

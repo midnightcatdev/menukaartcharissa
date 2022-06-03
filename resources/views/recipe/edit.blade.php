@@ -4,7 +4,8 @@
 
     <div class="form-control">
         <h2>Bewerk recept</h2>
-        {{ Form::model($recipe,['route' => ['recipe.update', $recipe], 'method' => 'put']) }}
+
+        {{ Form::model($recipe, array('route' => array('recipe.update', 'restaurant' => $restaurant->name, 'recipe' => $recipe), 'method' => 'put' )) }}
         {{ Form::label('name', 'Recept naam') }}
         {{ Form::text('name',  null, ['class' => 'form-control']) }}
         {{ Form::label('steps', 'Bereidingswijze') }}
@@ -19,7 +20,7 @@
             </div>
         @endforeach
         {{ Form::submit('Opslaan',['class' => 'btn btn-success mt-3']) }}
-        <a href="{{ route('dish.index') }}" class="btn btn-secondary mt-3">Terug</a>
+        <a href="{{ route('dish.index', $restaurant) }}" class="btn btn-secondary mt-3">Terug</a>
         {{ Form::close() }}
     </div>
 
