@@ -12,9 +12,6 @@ class RestaurantMiddleware
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $restaurant_str = $request->route()->parameter('restaurant');
-
-        dd(Restaurant::where('name', $restaurant_str)->first());
-
         $restaurant_obj = Restaurant::where('name', $restaurant_str)->firstOrFail();
         view()->share('restaurant', $restaurant_obj);
         Restaurant::setCurrentRestaurant($restaurant_obj);
