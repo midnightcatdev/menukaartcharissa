@@ -67,15 +67,8 @@ class DaypartController extends Controller
 
     public function menu($restaurant)
     {
-
-        //  dd('menu', Restaurant::getCurrentRestaurant()->dishes);
-        // Restaurant::where('name', $restaurant)->firstOrFail();
-
         $view = view('daypart.menukaart');
         $view->dayparts = Restaurant::getCurrentRestaurant()->dayparts;
-        //    $view->recipes = Recipe::get();
-        //    $view->dishes = Restaurant::getCurrentRestaurant()->dishes;
-        //    $view->foodtypes = Foodtype::get();
 
         return $view;
     }

@@ -32,6 +32,6 @@ class EmailIsVerified
 //
 ////        return redirect()->route('auth.verify')->with('success', 'Recept is aangemaakt');
 //
-////            }
+//            }
     }
 }

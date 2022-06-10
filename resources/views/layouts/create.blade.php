@@ -40,21 +40,23 @@
                     @else
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="{{ route('daypart.index', $restaurant) }}">{{ __('Dagdelen') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dish.index', $restaurant) }}">{{ __('Gerechten') }}</a>
+                               href="{{ route('daypart.index',[request()->restaurant]) }}">{{ __('Dagdelen') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="{{ route('foodtype.index', $restaurant) }}">{{ __('Gerecht type') }}</a>
+                               href="{{ route('dish.index',[request()->restaurant]) }}">{{ __('Gerechten') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="{{ route('ingredient.index', $restaurant) }}">{{ __('Ingredienten') }}</a>
+                               href="{{ route('foodtype.index',[request()->restaurant]) }}">{{ __('Gerecht type') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('recipe.index', $restaurant) }}">{{ __('Recepten') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('ingredient.index',[request()->restaurant]) }}">{{ __('Ingredienten') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ route('recipe.index',[request()->restaurant]) }}">{{ __('Recepten') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"

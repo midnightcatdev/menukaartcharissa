@@ -1,14 +1,17 @@
-@extends('layouts.header')
-@extends('layouts.create')
+{{--@extends('layouts.header')--}}
+{{--@extends('layouts.create')--}}
+
+@extends('layouts.app')
+
 @section('content')
 
     <div class="form-control">
 
         <h2>Bewerk gerecht</h2>
-        {{--        {{ dd('scwer') }}--}}
-        {{--        {{ Form::model($dish, array('route' => array('dish.update', 'restaurant' => $restaurant->name, 'recipe' => $dish) , 'method' => 'put' )) }}--}}
+        {{--        {{ Form::model($foodtype, array('route' => array('foodtype.update', 'restaurant' => $restaurant->name, 'foodtype' => $foodtype), 'method' => 'put' )) }}--}}
 
-        {{ Form::model($dish, ['route' => ['dish.update', 'restaurant' => $restaurant->name, 'dish' => $dish], 'method' => 'put' ]) }}
+        {{--        {{ Form::model($dish, array('route' => array('dish.update', 'restaurant' => $restaurant->name, 'dish' => $dish) , 'method' => 'put' )) }}--}}
+        {{ Form::model($dish, ['route' => ['dish.update', 'restaurant' => $restaurant->name, 'dish' => $dish], 'method' => 'put', 'files' => true ]) }}
 
         {{ Form::label('name', 'Naam', ['class' => 'form-label'] ) }}
         {{ Form::text('name', null, ['class' => 'form-control'] ) }}

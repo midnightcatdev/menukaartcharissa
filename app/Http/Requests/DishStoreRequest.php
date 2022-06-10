@@ -30,7 +30,7 @@ class DishStoreRequest extends FormRequest
             'price' => 'required',
             'foodtype_id' => 'required',
             'recipes' => 'required',
-            'photo_name' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'photo_name' => 'required',
         ];
     }
 

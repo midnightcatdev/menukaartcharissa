@@ -4,8 +4,8 @@
         <div class="card-body">
             <div class="row">
 
-                {{ dd($dish->restaurant_name) }}
-                {{ dd($dish->restaurant_id) }}
+                {{--                {{ dd($dish->restaurant_name) }}--}}
+                {{--                {{ dd($dish->restaurant_id) }}--}}
 
                 <h1 class="card-title">{{ $dish->name }}</h1>
                 <div class="col-4">
@@ -38,18 +38,19 @@
                 <div class="d-flex">
                     <div class="edit-button me-1">
                         @can('update', $dish)
-                            <a href="{{ route('dish.edit', $dish) }}" class="btn btn-success" type="edit">Bewerken</a>
+                            <a href="{{ route('dish.edit',[request()->restaurant, $dish]) }}" class="btn btn-success"
+                               type="edit">Bewerken</a>
                         @endcan
                     </div>
                     <div class="delete-button me-1">
                         @can('delete', $dish)
-                            {{ Form::open(['route' => ['dish.destroy', $dish], 'method' => 'delete']) }}
+                            {{ Form::open(['route' => ['dish.destroy',[request()->restaurant, $dish]], 'method' => 'delete']) }}
                             {{ Form::submit('Verwijderen',['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @endcan
                     </div>
                     <div class="back-button">
-                        <a href="{{ route('dish.index', $dish) }}" class="btn btn-info text-white" type="edit">Gerechten
+                        <a href="{{ route('dish.index', $restaurant) }}" class="btn btn-info text-white" type="edit">Gerechten
                             overzicht</a>
                     </div>
                 </div>

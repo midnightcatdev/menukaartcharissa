@@ -80,7 +80,7 @@ class DishController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($restaurant, $dish)
+    public function edit($restaurant, Dish $dish)
     {
         $view = view('dish.edit');
         $view->foodtypes = Foodtype::pluck('name', 'id');

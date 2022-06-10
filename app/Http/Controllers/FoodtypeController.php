@@ -16,11 +16,8 @@ class FoodtypeController extends Controller
      */
     public function index($restaurant)
     {
-//        dd($restaurant);
-
         $view = view('foodtype.index');
         Restaurant::where('name', $restaurant)->firstOrFail();
-//        $view->foodtypes = Restaurant::getCurrentRestaurant()->footype;
         $view->foodtypes = Foodtype::paginate(8);
 
         return $view;
