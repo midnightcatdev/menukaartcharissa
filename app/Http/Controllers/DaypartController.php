@@ -18,7 +18,6 @@ class DaypartController extends Controller
     {
         $view = view('daypart.index');
         $view->dayparts = Restaurant::getCurrentRestaurant()->dayparts;
-//        $view->dayparts = Daypart::get();
 
         return $view;
     }

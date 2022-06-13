@@ -14,13 +14,10 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($restaurant, Contact $contact)
     {
-//        dd(Restaurant::getCurrentRestaurant());
-        //   dd('sdf', Restaurant::getCurrentRestaurant());
-//        dd($restaurant);
         $view = view('contact.index');
-//        Restaurant::where('name', $restaurant)->firstOrFail();
+        $view->contact = $contact;
 
         return $view;
     }
@@ -43,8 +40,6 @@ class ContactController extends Controller
      */
     public function store($restaurant, Request $request)
     {
-
-
         $name = $request->input('name');
         $email = $request->input('email');
         $question = $request->input('question');
@@ -62,9 +57,12 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($restaurant, Contact $contact)
     {
-        //
+        $view = view('contact.show');
+        $view->contact = $contact;
+
+        return $view;
     }
 
     /**
@@ -73,11 +71,9 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($restaurant, Contact $contact)
+    public function edit()
     {
-        $view = view('contact.edit');
-
-        return $view;
+//
     }
 
     /**
@@ -87,7 +83,7 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
         //
     }

@@ -4,7 +4,8 @@
     <div class="container p-3 d-flex">
         <div class="col-6 p-3 border rounded">
             <h3> Stuur een vraag </h3>
-            {{ Form::open(['route' => ['contact.store', [request()->restaurant]]]) }}
+
+            {{ Form::open(['route' => ['contact.store', $restaurant->name]]) }}
             {{ Form::label('name', 'Naam:', ['class' => 'form-label'] ) }}
             {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Naam', )) }}
             {{ Form::label('email', 'Email:', ['class' => 'form-label'] ) }}
@@ -17,17 +18,18 @@
 
         <div class="col-6 p-2 ms-1 border rounded">
             <h3>Adres</h3>
-            <ul class="list-unstyled">
-                <li>Contact gegevens</li>
-                <li>Utrecht straat 37</li>
-                <li>Utrecht</li>
-                <li>Telefoon: 0666666</li>
+            <ul>
+
+                {{--                <li> {{ $contact->streetname }} </li>--}}
+
+                Restaurant {{ $restaurant->name }}
+                {{ $contact->streetname }}
+                {{ $contact->postcode }}
+                {{ $contact->city }}
             </ul>
 
-            {{ Form::open(['route' => ['contact.edit', $restaurant]]) }}
-            {{ Form::label('name', 'Naam:', ['class' => 'form-label'] ) }}
-            {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Naam', )) }}
-            {{ Form::close() }}
+            <a href="{{ route('daypart.index', $restaurant) }}" class="btn btn-secondary mt-3">Terug</a>
+
 
         </div>
     </div>

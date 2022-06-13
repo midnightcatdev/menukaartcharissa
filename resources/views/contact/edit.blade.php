@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    edit page
+    <div>
+        <p>dfbe</p>
+    </div>
 
 @endsection
